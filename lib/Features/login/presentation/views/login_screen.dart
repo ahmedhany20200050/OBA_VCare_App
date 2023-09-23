@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/Features/register/presentation/views/register_screen.dart';
 import '../../../../core/app_colors.dart';
 import '../../../../core/app_styles.dart';
 import '../../../../core/utils/size_config.dart';
@@ -188,7 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         const Text("No account yet?"),
                                         GestureDetector(
                                           onTap: (){
-                                            //todo:push the register screen
+                                            Navigator.of(context).pushNamed(RegisterScreen.id);
                                           },
                                           child: Text("Register here",style: AppStyles.homeProgressStyle.copyWith(
                                             fontSize: 12
