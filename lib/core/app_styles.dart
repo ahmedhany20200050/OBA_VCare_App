@@ -10,6 +10,12 @@ class AppStyles{
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
   );
+  static  TextStyle textFieldErrorStyle =  TextStyle(
+    color:Colors.red,
+    fontSize: 8*SizeConfig.textRatio,
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+  );
   static TextStyle descriptionStyle= TextStyle(
     color:const Color(0xFF7B808A),
     fontSize: 16*SizeConfig.textRatio,
