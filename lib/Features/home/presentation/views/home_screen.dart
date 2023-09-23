@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/bottom_navigation_bar_cubit.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/bottom_navigation_bar_states.dart';
-import 'package:untitled/core/app_assets.dart';
+import 'package:untitled/Features/home/presentation/views/widgets/home_body.dart';
+import 'package:untitled/core/utils/app_assets.dart';
 import 'package:untitled/core/app_colors.dart';
 import 'package:untitled/core/app_styles.dart';
 import 'package:untitled/core/utils/size_config.dart';
@@ -22,11 +23,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const CustomAppBar(),
+        drawer: const Drawer(),
         body: BlocBuilder<BottomNavigationBarCubit, BottomNavigationBarStates>(
           builder: (_, __) => IndexedStack(
             index: _currentIndex,
             children: const [
-               
+              HomeBody(),
             ],
           ),
         ),
