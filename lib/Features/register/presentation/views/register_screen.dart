@@ -260,6 +260,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         const Text("Female"),
                                       ],
                                     ),
+                                    Row(
+                                      children: [
+                                        Text("Already have account?"),
+                                        Text("Login here",style: AppStyles.homeProgressStyle.copyWith(
+                                          fontSize: 12
+                                        ),),
+                                      ],
+                                    ),
                                     SizedBox(
                                       height: 48 * SizeConfig.verticalBlock,
                                       child: TextButton(

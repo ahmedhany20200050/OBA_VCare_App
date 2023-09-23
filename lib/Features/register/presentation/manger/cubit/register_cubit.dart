@@ -20,7 +20,7 @@ class RegisterCubit extends Cubit<RegisterCubitState> {
           'name':name,
           'email': email,
           'phone':phone,
-          'gender':'0',
+          'gender':isMale?'0':'1',
           'password': password,
           'password_confirmation': confirmPassword,
         },
