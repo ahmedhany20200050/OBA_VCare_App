@@ -1,4 +1,0 @@
-#Sat Sep 23 11:50:29 TRT 2023
-base.0=E\:\\important\\github_test\\OBA_VCare_App\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
