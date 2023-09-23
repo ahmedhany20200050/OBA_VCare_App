@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
@@ -48,7 +47,7 @@ class Api {
          Map<String, dynamic> data = jsonDecode(response.body);
          return data;
        } else {
-         print(response.body);
+        //  print(response.body);
          throw Exception(
              response.reasonPhrase.toString());
        }

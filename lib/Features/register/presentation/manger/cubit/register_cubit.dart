@@ -1,5 +1,5 @@
 // ignore_for_file: missing_required_param
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,7 +29,7 @@ class RegisterCubit extends Cubit<RegisterCubitState> {
       token = data['data']['token'];
       var storage = const FlutterSecureStorage();
       await storage.write(key: "token", value: token);
-       print(token);
+      //  print(token);
     } on Exception catch (e) {
       emit(RegisterCubitFailure(errmsg: e.toString()));
     }
