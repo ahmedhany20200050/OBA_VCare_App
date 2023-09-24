@@ -1,10 +1,8 @@
 class AppAssets {
-  static const String menuIcon = 'assets/icons/menu.svg';
-  static const String userIcon = 'assets/icons/user.svg';
-  static const String tasksIcon = 'assets/icons/tasks.svg';
-  static const String mailIcon = 'assets/icons/mail.svg';
-  static const String phoneIcon = 'assets/icons/phone.svg';
-  static const String editIcon = 'assets/icons/edit.svg';
-  static const String rightArrowIcon = 'assets/icons/rightArrow.svg';
-  static const String leftArrowIcon = 'assets/icons/leftArrow.svg';
+  static const String homeIcon = 'assets/icons/home.svg';
+  static const String accountIcon = 'assets/icons/account.svg';
+  static const String searchIcon = 'assets/icons/search.svg';
+  static const String clockIcon = 'assets/icons/clock.svg';
+  static const String hospitalIcon = 'assets/icons/hospital.svg';
+  static const String arrowIcon = 'assets/icons/arrow.svg';
 }

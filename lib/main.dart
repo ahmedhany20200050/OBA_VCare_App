@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/Features/OnBoarding/presentation/views/first_on_boarding_screen.dart';
 import 'package:untitled/Features/OnBoarding/presentation/views/second_on_boarding_screen.dart';
 import 'package:untitled/Features/Splash/presentation/views/splash_screen.dart';
+import 'package:untitled/Features/home/presentation/manager/cubits/bottom_navigation_bar_cubit.dart';
+import 'package:untitled/Features/home/presentation/views/home_screen.dart';
+
 import 'package:untitled/Features/login/presentation/manger/cubit/login_cubit.dart';
 import 'package:untitled/Features/login/presentation/views/login_screen.dart';
 import 'package:untitled/Features/register/presentation/manger/cubit/register_cubit.dart';
@@ -43,8 +46,7 @@ class MyApp extends StatelessWidget {
           SecondOnBoardingScreen.id:(context) => const SecondOnBoardingScreen(),
         },
       ),
+
     );
   }
 }
-
-
