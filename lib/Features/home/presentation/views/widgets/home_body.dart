@@ -12,7 +12,7 @@ class HomeBody extends StatelessWidget {
       children: const [
         MajorComponent(majorTitle: "Basel"),
         MajorComponent(majorTitle: "Basel"),
-        MajorComponent(majorTitle: "Basel")
+        MajorComponent(majorTitle: "Basel"),
       ],
     );
   }

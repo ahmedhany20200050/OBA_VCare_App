@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:untitled/Features/doctor%20details(booking)/presentation/manager/cubit/doctor_details_cubit.dart';
 import 'package:untitled/Features/doctor%20details(booking)/presentation/views/doctor_details.dart';
 import 'package:untitled/Features/OnBoarding/presentation/views/first_on_boarding_screen.dart';
 import 'package:untitled/Features/OnBoarding/presentation/views/second_on_boarding_screen.dart';
@@ -14,12 +15,14 @@ import 'package:untitled/Features/user_profile/presentation/views/user_profile.d
 // import 'package:untitled/Features/user_profile/presentation/views/user_profile.dart';
 // import 'package:untitled/Features/register/presentation/views/register_screen.dart';
 import 'package:untitled/core/app_colors.dart';
+import 'package:untitled/core/helpers/observer.dart';
 import 'package:untitled/core/utils/size_config.dart';
 
 import 'Features/login/presentation/views/login_screen.dart';
 import 'Features/register/presentation/views/register_screen.dart';
 
 void main() {
+  Bloc.observer = Observer();
   runApp(const MyApp());
 }
 
@@ -33,6 +36,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => RegisterCubit()),
         BlocProvider(create: (context) => LoginCubit()),
+        BlocProvider(
+            create: (context) =>
+                DoctorDetailsCubit()..showDoctorDetails(docId: '3')),
         BlocProvider<BottomNavigationBarCubit>(
             create: (context) => BottomNavigationBarCubit()),
       ],
@@ -44,19 +50,19 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        initialRoute: DoctorDetails.id,
+        initialRoute: LoginScreen.id,
         routes: {
           LoginScreen.id: (context) => const LoginScreen(),
           RegisterScreen.id: (context) => const RegisterScreen(),
-          SplashScreen.id: (context) =>  SplashScreen(),
-          FirstOnBoardingScreen.id:(context) => const FirstOnBoardingScreen(),
-          SecondOnBoardingScreen.id:(context) => const SecondOnBoardingScreen(),
-          HomeScreen.id:(context) => const HomeScreen(),
-          DoctorDetails.id:(context) => const DoctorDetails(),
-          UserProfile.id:(context) => const UserProfile(),
+          SplashScreen.id: (context) => SplashScreen(),
+          FirstOnBoardingScreen.id: (context) => const FirstOnBoardingScreen(),
+          SecondOnBoardingScreen.id: (context) =>
+              const SecondOnBoardingScreen(),
+          HomeScreen.id: (context) => const HomeScreen(),
+          DoctorDetails.id: (context) => const DoctorDetails(),
+          UserProfile.id: (context) => const UserProfile(),
         },
       ),
-
     );
   }
 }

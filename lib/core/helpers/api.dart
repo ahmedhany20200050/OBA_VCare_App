@@ -14,7 +14,7 @@ class Api {
       });
     }
     http.Response response = await http.get(Uri.parse(url), headers: headers);
-    if (response.statusCode >= 200||response.statusCode<300) {
+    if (response.statusCode >= 200 || response.statusCode < 300) {
       return jsonDecode(response.body);
     } else {
       throw Exception(
@@ -37,25 +37,22 @@ class Api {
       });
     }
     http.Response response;
-    try{
-       response= await http.post(
+    try {
+      response = await http.post(
         Uri.parse(url),
         body: body,
         headers: headers,
       );
-       if (response.statusCode >= 200&&response.statusCode<300) {
-         Map<String, dynamic> data = jsonDecode(response.body);
-         return data;
-       } else {
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        return data;
+      } else {
         //  print(response.body);
-         throw Exception(
-             response.reasonPhrase.toString());
-       }
-    }catch(e){
+        throw Exception(response.reasonPhrase.toString());
+      }
+    } catch (e) {
       throw Exception(e.toString());
     }
-
-
   }
 
   Future<dynamic> put(
@@ -89,8 +86,8 @@ class Api {
 
   Future<dynamic> delete(
       {required String url,
-        @required dynamic body,
-        @required String? token}) async {
+      @required dynamic body,
+      @required String? token}) async {
     Map<String, String> headers = {};
     // headers.addAll({
     //   'Content-Type': 'application/json',
@@ -107,17 +104,14 @@ class Api {
       body: body,
       headers: headers,
     );
-    if (response.statusCode >= 200&&response.statusCode<300) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       Map<String, dynamic> data = jsonDecode(response.body);
       return data;
     } else {
       if (kDebugMode) {
         print(response.body);
       }
-      throw Exception(
-          response.reasonPhrase.toString());
+      throw Exception(response.reasonPhrase.toString());
     }
   }
-
-
 }
