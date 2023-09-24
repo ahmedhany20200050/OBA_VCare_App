@@ -13,15 +13,17 @@ class AppStyles {
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
   );
-  static TextStyle textFieldErrorStyle = TextStyle(
-    color: Colors.red,
-    fontSize: 8 * SizeConfig.textRatio,
+
+
+  static  TextStyle textFieldErrorStyle =  TextStyle(
+    color:Colors.red,
+    fontSize: 8*SizeConfig.textRatio,
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
   );
-  static TextStyle descriptionStyle = TextStyle(
-    color: const Color(0xFF7B808A),
-    fontSize: 16 * SizeConfig.textRatio,
+  static TextStyle descriptionStyle= TextStyle(
+    color:const Color(0xFF7B808A),
+    fontSize: 16*SizeConfig.textRatio,
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
     height: 1,
@@ -76,7 +78,36 @@ class AppStyles {
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
   );
-
+  static final TextStyle color0xFF173F68FontSize12FontWeightW400 = TextStyle(
+    fontFamily: 'Roboto',
+    color: AppColors.color0xFF173F68,
+    fontSize: 12 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle color0xFFF3FAF9FontSize20FontWeightW500 = TextStyle(
+    color: AppColors.color0xFFF3FAF9,
+    fontSize: 20 * SizeConfig.textRatio,
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w500,
+  );
+  static final TextStyle color0xFF020D18FontSize16FontWeightW400 = TextStyle(
+    color: AppColors.color0xFF020D18,
+    fontSize: 16 * SizeConfig.textRatio,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle color0xB2030E19FontSize12FontWeightW400 = TextStyle(
+    color: AppColors.color0xB2030E19,
+    fontSize: 12 * SizeConfig.textRatio,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle color0xFF020D18FontSize12FontWeightW400 = TextStyle(
+    color: AppColors.color0xFF020D18,
+    fontSize: 12 * SizeConfig.textRatio,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w400,
+  );
   static final TextStyle
       color0xFF091E4AFontSize16FontWeightW400Height09AfterTheDecimalPointLetterSpacing15AfterTheDecimalPoint =
       GoogleFonts.roboto(
@@ -234,4 +265,5 @@ class AppStyles {
     fontSize: 34 * SizeConfig.textRatio,
     fontWeight: FontWeight.w400,
   );
+
 }

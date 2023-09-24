@@ -3,10 +3,13 @@ import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/material.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/Features/login/presentation/views/login_screen.dart';
 import '../../../../core/app_colors.dart';
 import '../../../../core/app_styles.dart';
 import '../../../../core/utils/size_config.dart';
+import '../../../home/presentation/views/home_screen.dart';
 import '../manger/cubit/register_cubit.dart';
 import '../manger/cubit/register_cubit_state.dart';
 
@@ -33,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       listener: (context, state) {
         if (state is RegisterCubitSuccess) {
           //todo: navigate
-          // Navigator.of(context).pushNamed(HomeScreen.id);
+          Navigator.of(context).pushReplacementNamed(HomeScreen.id);
           AnimatedSnackBar.material(
             'Register Success',
             type: AnimatedSnackBarType.success,
@@ -261,10 +264,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                     Row(
                                       children: [
-                                      const  Text("Already have account?"),
-                                        Text("Login here",style: AppStyles.homeProgressStyle.copyWith(
-                                          fontSize: 12
-                                        ),),
+
+                                        Text("Already have account?"),
+                                        GestureDetector(
+                                          onTap: (){
+                                            Navigator.of(context).pushReplacementNamed(LoginScreen.id);
+                                          },
+                                          child: Text("Login here",style: AppStyles.homeProgressStyle.copyWith(
+                                            fontSize: 12
+                                          ),),
+                                        ),
                                       ],
                                     ),
                                     SizedBox(
