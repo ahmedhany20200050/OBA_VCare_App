@@ -9,6 +9,7 @@ import 'package:untitled/Features/login/presentation/views/login_screen.dart';
 import '../../../../core/app_colors.dart';
 import '../../../../core/app_styles.dart';
 import '../../../../core/utils/size_config.dart';
+import '../../../home/presentation/views/home_screen.dart';
 import '../manger/cubit/register_cubit.dart';
 import '../manger/cubit/register_cubit_state.dart';
 
@@ -35,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       listener: (context, state) {
         if (state is RegisterCubitSuccess) {
           //todo: navigate
-          // Navigator.of(context).pushNamed(HomeScreen.id);
+          Navigator.of(context).pushReplacementNamed(HomeScreen.id);
           AnimatedSnackBar.material(
             'Register Success',
             type: AnimatedSnackBarType.success,
@@ -266,7 +267,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         Text("Already have account?"),
                                         GestureDetector(
                                           onTap: (){
-                                            Navigator.of(context).pushNamed(LoginScreen.id);
+                                            Navigator.of(context).pushReplacementNamed(LoginScreen.id);
                                           },
                                           child: Text("Login here",style: AppStyles.homeProgressStyle.copyWith(
                                             fontSize: 12

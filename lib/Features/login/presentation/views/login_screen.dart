@@ -9,6 +9,7 @@ import 'package:untitled/Features/register/presentation/views/register_screen.da
 import '../../../../core/app_colors.dart';
 import '../../../../core/app_styles.dart';
 import '../../../../core/utils/size_config.dart';
+import '../../../home/presentation/views/home_screen.dart';
 import '../manger/cubit/login_cubit.dart';
 import '../manger/cubit/login_cubit_state.dart';
 
@@ -52,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
       listener: (context, state) {
         if (state is LoginCubitSuccess) {
           //todo: navigate
-          // Navigator.of(context).pushNamed(HomeScreen.id);
+          Navigator.of(context).pushReplacementNamed(HomeScreen.id);
           AnimatedSnackBar.material(
             'Login Success',
             type: AnimatedSnackBarType.success,

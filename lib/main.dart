@@ -28,6 +28,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => RegisterCubit()),
         BlocProvider(create: (context) => LoginCubit()),
+        BlocProvider<BottomNavigationBarCubit>(
+            create: (context) => BottomNavigationBarCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -44,6 +46,7 @@ class MyApp extends StatelessWidget {
           SplashScreen.id: (context) =>  SplashScreen(),
           FirstOnBoardingScreen.id:(context) => const FirstOnBoardingScreen(),
           SecondOnBoardingScreen.id:(context) => const SecondOnBoardingScreen(),
+          HomeScreen.id:(context) => const HomeScreen(),
         },
       ),
 

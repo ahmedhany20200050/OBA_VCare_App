@@ -11,9 +11,6 @@ class AppStyles {
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
   );
-  static TextStyle descriptionStyle = TextStyle(
-    color: const Color(0xFF7B808A),
-    fontSize: 16 * SizeConfig.textRatio,
 
   static  TextStyle textFieldErrorStyle =  TextStyle(
     color:Colors.red,
