@@ -1,9 +1,9 @@
 // ignore_for_file: body_might_complete_normally_nullable
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/material.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Features/login/presentation/views/login_screen.dart';
 import '../../../../core/app_colors.dart';
@@ -264,6 +264,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                     Row(
                                       children: [
+
                                         Text("Already have account?"),
                                         GestureDetector(
                                           onTap: (){

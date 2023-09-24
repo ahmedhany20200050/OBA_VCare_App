@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled/core/utils/size_config.dart';
@@ -12,6 +14,7 @@ class AppStyles {
     fontWeight: FontWeight.w400,
   );
 
+
   static  TextStyle textFieldErrorStyle =  TextStyle(
     color:Colors.red,
     fontSize: 8*SizeConfig.textRatio,
@@ -21,7 +24,6 @@ class AppStyles {
   static TextStyle descriptionStyle= TextStyle(
     color:const Color(0xFF7B808A),
     fontSize: 16*SizeConfig.textRatio,
-
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
     height: 1,
@@ -251,4 +253,17 @@ class AppStyles {
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w700,
   );
+
+  //omar
+  static final TextStyle textStyle24w400inter = GoogleFonts.inter(
+    color: AppColors.colorBlack,
+    fontSize: 24 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle textStyle34w400roboto = GoogleFonts.roboto(
+    color: AppColors.colorBlack,
+    fontSize: 34 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w400,
+  );
+
 }
