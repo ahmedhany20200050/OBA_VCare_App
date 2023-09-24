@@ -5,6 +5,7 @@ import 'package:untitled/core/utils/size_config.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({super.key});
+  static String id ="UserProfile";
 
   @override
   Widget build(BuildContext context) {

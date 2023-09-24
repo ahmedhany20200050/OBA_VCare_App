@@ -6,6 +6,7 @@ import 'package:untitled/core/utils/size_config.dart';
 
 class DoctorDetails extends StatefulWidget {
   const DoctorDetails({super.key});
+  static String id= "DoctorDetails";
 
   @override
   State<DoctorDetails> createState() => _DoctorDetailsState();
