@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/Features/login/presentation/views/login_screen.dart';
 import '../../../../core/app_colors.dart';
 import '../../../../core/app_styles.dart';
 import '../../../../core/utils/size_config.dart';
@@ -263,9 +264,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     Row(
                                       children: [
                                         Text("Already have account?"),
-                                        Text("Login here",style: AppStyles.homeProgressStyle.copyWith(
-                                          fontSize: 12
-                                        ),),
+                                        GestureDetector(
+                                          onTap: (){
+                                            Navigator.of(context).pushNamed(LoginScreen.id);
+                                          },
+                                          child: Text("Login here",style: AppStyles.homeProgressStyle.copyWith(
+                                            fontSize: 12
+                                          ),),
+                                        ),
                                       ],
                                     ),
                                     SizedBox(
