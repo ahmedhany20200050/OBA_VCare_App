@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/bottom_navigation_bar_cubit.dart';
 import 'package:untitled/Features/home/presentation/views/home_screen.dart';
+
+import 'package:untitled/Features/login/presentation/manger/cubit/login_cubit.dart';
+import 'package:untitled/Features/login/presentation/views/login_screen.dart';
 import 'package:untitled/Features/register/presentation/manger/cubit/register_cubit.dart';
 import 'package:untitled/Features/register/presentation/views/register_screen.dart';
 import 'package:untitled/core/app_colors.dart';
@@ -26,11 +29,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MultiBlocProvider(providers: [
-        BlocProvider(create: (context) => RegisterCubit()),
-        BlocProvider<BottomNavigationBarCubit>(
+      home:  MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => RegisterCubit()),
+            BlocProvider(create: (context) => LoginCubit()),
+            BlocProvider<BottomNavigationBarCubit>(
             create: (context) => BottomNavigationBarCubit())
-      ], child: const HomeScreen()),
+          ],
+          child: const LoginScreen()),
     );
   }
 }
