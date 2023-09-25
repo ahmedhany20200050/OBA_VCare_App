@@ -11,6 +11,7 @@ import 'package:untitled/Features/home/presentation/views/home_screen.dart';
 import 'package:untitled/Features/login/presentation/manger/cubit/login_cubit.dart';
 // import 'package:untitled/Features/login/presentation/views/login_screen.dart';
 import 'package:untitled/Features/register/presentation/manger/cubit/register_cubit.dart';
+import 'package:untitled/Features/success_state/view/success_screen.dart';
 import 'package:untitled/Features/user_profile/presentation/views/user_profile.dart';
 // import 'package:untitled/Features/user_profile/presentation/views/user_profile.dart';
 // import 'package:untitled/Features/register/presentation/views/register_screen.dart';
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        initialRoute: LoginScreen.id,
+        initialRoute: SuccessStateScreen.id,
         routes: {
           LoginScreen.id: (context) => const LoginScreen(),
           RegisterScreen.id: (context) => const RegisterScreen(),
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
           HomeScreen.id: (context) => const HomeScreen(),
           DoctorDetails.id: (context) => const DoctorDetails(),
           UserProfile.id: (context) => const UserProfile(),
+          SuccessStateScreen.id: (context) => const SuccessStateScreen(),
         },
       ),
     );
