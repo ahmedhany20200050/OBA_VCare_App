@@ -51,6 +51,7 @@ class DoctorDetailsCubit extends Cubit<DoctorDetailsState> {
   }
 
   availableBookTimes() {
+    availTimes.clear();
     int startTimeHour = int.parse(docmodel!.startTime!.substring(0, 2));
     int startTimeMinute = int.parse(docmodel!.startTime!.substring(3, 5));
     int endtimehour = int.parse(docmodel!.endTime!.substring(0, 2));
@@ -60,12 +61,12 @@ class DoctorDetailsCubit extends Cubit<DoctorDetailsState> {
     time = start;
 
     for (; time!.hour <= end.hour;) {
-      if (time!.minute==0) {
-        availTimes.add('${time!.hour.toString()}:${time!.minute.toString()}0'); 
+      if (time!.minute == 0) {
+        availTimes.add('${time!.hour.toString()}:${time!.minute.toString()}0');
       } else {
-       availTimes.add('${time!.hour.toString()}:${time!.minute.toString()}'); 
+        availTimes.add('${time!.hour.toString()}:${time!.minute.toString()}');
       }
-      
+
       time = time!.add(const Duration(minutes: 30));
     }
     if (end.minute == 0) {

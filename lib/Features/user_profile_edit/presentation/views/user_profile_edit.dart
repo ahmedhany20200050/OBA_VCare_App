@@ -1,7 +1,5 @@
 // ignore_for_file: body_might_complete_normally_nullable
-
 import 'package:flutter/material.dart';
-import 'package:untitled/Features/profile_change_password/presentation/views/profile_change_password.dart';
 import 'package:untitled/core/app_colors.dart';
 import 'package:untitled/core/app_styles.dart';
 import 'package:untitled/core/utils/size_config.dart';
@@ -25,6 +23,7 @@ class _UserProfileEditState extends State<UserProfileEdit> {
 
   @override
   Widget build(BuildContext context) {
+    // String userId = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: const CustomAppBar(),
       drawer: const Drawer(),
@@ -115,23 +114,6 @@ class _UserProfileEditState extends State<UserProfileEdit> {
                       ),
                     ),
                   ],
-                ),
-                SizedBox(
-                  height: 20 * SizeConfig.verticalBlock,
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: GestureDetector(
-                    onTap: () =>
-                        Navigator.pushNamed(context, ProfileChangePassword.id),
-                    child: Text(
-                      'Change password?',
-                      style: AppStyles.textStyle34w400roboto.copyWith(
-                        fontSize: 12 * SizeConfig.textRatio,
-                        color: AppColors.colorBlack.withOpacity(0.5),
-                      ),
-                    ),
-                  ),
                 ),
                 SizedBox(
                   height: 20 * SizeConfig.verticalBlock,

@@ -1,3 +1,4 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/Features/doctor%20details(booking)/presentation/manager/cubit/doctor_details_cubit.dart';
@@ -21,17 +22,31 @@ class _DoctorDetailsState extends State<DoctorDetails> {
   String? selectedTime;
   bool firsttimeinthispage = true;
   bool isPicked = false;
+  String? docID;
 
   @override
   void initState() {
-    BlocProvider.of<DoctorDetailsCubit>(context).showDoctorDetails(docId: '3');
+    Future.delayed(Duration.zero, () {
+      docID = ModalRoute.of(context)!.settings.arguments as String;
+      BlocProvider.of<DoctorDetailsCubit>(context)
+          .showDoctorDetails(docId: docID!);
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DoctorDetailsCubit, DoctorDetailsState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is BookAppointmentSuccess) {
+          AnimatedSnackBar.material(
+            'Appointment booked Successfully',
+            type: AnimatedSnackBarType.success,
+            duration: const Duration(seconds: 4),
+          ).show(context);
+          Navigator.pop(context);
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           body: BlocProvider.of<DoctorDetailsCubit>(context).docmodel == null ||
@@ -284,12 +299,13 @@ class _DoctorDetailsState extends State<DoctorDetails> {
 
                                       if (key.currentState!.validate() &&
                                           isPicked == true) {
-                                        // BlocProvider.of<DoctorDetailsCubit>(
-                                        //         context)
-                                        //     .bookAppointment(
-                                        //   doctorId: ,
-                                        //   startTime: '${datecon.text} $selectedTime',
-                                        // );
+                                        BlocProvider.of<DoctorDetailsCubit>(
+                                                context)
+                                            .bookAppointment(
+                                          doctorId: docID!,
+                                          startTime:
+                                              '${datecon.text} $selectedTime',
+                                        );
                                       }
                                     },
                                     child: Text(
