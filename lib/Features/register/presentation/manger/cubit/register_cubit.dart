@@ -1,4 +1,6 @@
 // ignore_for_file: missing_required_param
+import 'dart:convert';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -6,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../core/helpers/api.dart';
 import '../../../../../core/utils/endpoints.dart';
 import 'register_cubit_state.dart';
+import 'package:http/http.dart' as http;
 
 
 class RegisterCubit extends Cubit<RegisterCubitState> {
@@ -14,8 +17,8 @@ class RegisterCubit extends Cubit<RegisterCubitState> {
   Future register({required String name,required String email,required String phone, required String password, required String confirmPassword,required bool isMale}) async {
     emit(RegisterCubitLoading());
     try {
-      var data = await Api().post(
-        url: EndPoints.baseUrl + EndPoints.registerEndpoint,
+      var response = await http.post(
+        Uri.parse(EndPoints.baseUrl + EndPoints.registerEndpoint),
         body: {
           'name':name,
           'email': email,
@@ -25,13 +28,23 @@ class RegisterCubit extends Cubit<RegisterCubitState> {
           'password_confirmation': confirmPassword,
         },
       );
-      emit(RegisterCubitSuccess());
-      token = data['data']['token'];
-      var storage = const FlutterSecureStorage();
-      await storage.write(key: "token", value: token);
-      //  print(token);
+      var data =jsonDecode(response.body);
+      if(response.statusCode>=200&&response.statusCode<300){
+        emit(RegisterCubitSuccess());
+        token = data['data']['token'];
+        var storage = const FlutterSecureStorage();
+        await storage.write(key: "token", value: token);
+        //  print(token);
+      }else if(response.statusCode==422){
+        emit(RegisterCubitFailure(errmsg: data['data']));
+      }else{
+        throw Exception(response.reasonPhrase.toString());
+      }
+      
     } on Exception catch (e) {
-      emit(RegisterCubitFailure(errmsg: e.toString()));
+      emit(RegisterCubitFailure(errmsg: {
+        'error': e.toString(),
+      }));
     }
   }
 

@@ -27,24 +27,16 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController password = TextEditingController();
   bool keepMeLoggedIn = true;
 
-  String emailErrors(state){
+  String errors(state,String error){
     if(state is LoginCubitFailure){
-      if(state.err.containsKey('email')){
+      if(state.err.containsKey(error)){
         // print(state.err['email'][0].toString());
-        return state.err['email'][0].toString();
+        return state.err[error][0].toString();
       }
     }
     return'';
   }
-  String passwordErrors(state){
-    if(state is LoginCubitFailure){
-      if(state.err.containsKey('password')){
-        // print(state.err['password'][0].toString());
-        return state.err['password'][0].toString();
-      }
-    }
-    return'';
-  }
+
 
 
   @override
@@ -134,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                     ),
                                     state is LoginCubitFailure?
-                                    Text(emailErrors(state),style: AppStyles.textFieldErrorStyle,):Container(),
+                                    Text(errors(state,"email"),style: AppStyles.textFieldErrorStyle,):Container(),
                                     const SizedBox(
                                       height: 24,
                                     ),
@@ -163,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                     ),
                                     state is LoginCubitFailure?
-                                        Text(passwordErrors(state),style: AppStyles.textFieldErrorStyle,):Container(),
+                                        Text(errors(state,'password'),style: AppStyles.textFieldErrorStyle,):Container(),
                                     SizedBox(
                                       height: 24*SizeConfig.verticalBlock,
                                     ),
