@@ -53,8 +53,8 @@ class _SearchScreenState extends State<SearchScreen> {
 
       builder: (context, state) {
         var cubit = BlocProvider.of<GetDoctorsCubit>(context);
-        return Scaffold(
-            body: state is GetDoctorsCubitFailure?Center(child: CircularProgressIndicator(color: AppColors.primaryColor,),):SafeArea(
+        return
+            state is GetDoctorsCubitFailure?Center(child: CircularProgressIndicator(color: AppColors.primaryColor,),):SafeArea(
                         child: Column(
                           children: [
                             Container(
@@ -78,11 +78,9 @@ class _SearchScreenState extends State<SearchScreen> {
                               ),
                               child: Row(
                                 children: [
-                                  Icon(
-                                    Icons.arrow_back,
-                                  ),
+
                                   SizedBox(
-                                    width: 24*SizeConfig.horizontalBlock,
+                                    width: 10*SizeConfig.horizontalBlock,
                                   ),
                                   Expanded(
                                     child: TextFormField(
@@ -121,7 +119,8 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                           ],
                         ),
-                      ));
+                      )
+        ;
       },
     );
   }
