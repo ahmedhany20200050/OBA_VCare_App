@@ -4,6 +4,8 @@ import 'package:untitled/Features/doctor%20details(booking)/presentation/views/d
 import 'package:untitled/Features/OnBoarding/presentation/views/first_on_boarding_screen.dart';
 import 'package:untitled/Features/OnBoarding/presentation/views/second_on_boarding_screen.dart';
 import 'package:untitled/Features/Splash/presentation/views/splash_screen.dart';
+import 'package:untitled/Features/history_details/presentation/manger/cubit/history_details_cubit.dart';
+import 'package:untitled/Features/history_details/presentation/views/history_details_screen.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/bottom_navigation_bar_cubit.dart';
 import 'package:untitled/Features/home/presentation/views/home_screen.dart';
 
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
     SizeConfig.init(context);
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => HistoryDetailsCubit(),),
         BlocProvider(create: (context) => RegisterCubit()),
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => GetDoctorsCubit()),
@@ -47,7 +50,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        initialRoute: HomeScreen.id,
+        initialRoute: HistoryDetails.id,
         routes: {
           LoginScreen.id: (context) => const LoginScreen(),
           RegisterScreen.id: (context) => const RegisterScreen(),
@@ -58,6 +61,7 @@ class MyApp extends StatelessWidget {
           DoctorDetails.id:(context) => const DoctorDetails(),
           UserProfile.id:(context) => const UserProfile(),
           SearchScreen.id:(context) => const SearchScreen(),
+          HistoryDetails.id:(context) => const HistoryDetails(),
         },
       ),
 
