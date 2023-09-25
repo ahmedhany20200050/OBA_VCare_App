@@ -9,6 +9,7 @@ import 'package:untitled/Features/home/presentation/manager/cubits/bottom_naviga
 import 'package:untitled/Features/home/presentation/views/home_screen.dart';
 
 import 'package:untitled/Features/login/presentation/manger/cubit/login_cubit.dart';
+import 'package:untitled/Features/profile_change_password/presentation/views/profile_change_password.dart';
 // import 'package:untitled/Features/login/presentation/views/login_screen.dart';
 import 'package:untitled/Features/register/presentation/manger/cubit/register_cubit.dart';
 import 'package:untitled/Features/success_state/view/success_screen.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        initialRoute: UserProfileEdit.id,
+        initialRoute: ProfileChangePassword.id,
         routes: {
           LoginScreen.id: (context) => const LoginScreen(),
           RegisterScreen.id: (context) => const RegisterScreen(),
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
           UserProfile.id: (context) => const UserProfile(),
           SuccessStateScreen.id: (context) => const SuccessStateScreen(),
           UserProfileEdit.id: (context) => const UserProfileEdit(),
+          ProfileChangePassword.id: (context) => const ProfileChangePassword(),
         },
       ),
     );
