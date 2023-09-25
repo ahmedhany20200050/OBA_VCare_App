@@ -18,12 +18,13 @@ class _DoctorDetailsState extends State<DoctorDetails> {
   GlobalKey<FormState> key = GlobalKey();
   TextEditingController datecon = TextEditingController();
   int? selectedTimeIndex;
+  String? selectedTime;
   bool firsttimeinthispage = true;
   bool isPicked = false;
 
   @override
   void initState() {
-    // BlocProvider.of<DoctorDetailsCubit>(context).showDoctorDetails(docId: );
+    BlocProvider.of<DoctorDetailsCubit>(context).showDoctorDetails(docId: '3');
     super.initState();
   }
 
@@ -33,7 +34,10 @@ class _DoctorDetailsState extends State<DoctorDetails> {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-          body: BlocProvider.of<DoctorDetailsCubit>(context).docmodel == null
+          body: BlocProvider.of<DoctorDetailsCubit>(context).docmodel == null ||
+                  BlocProvider.of<DoctorDetailsCubit>(context)
+                      .availTimes
+                      .isEmpty
               ? const Center(
                   child: CircularProgressIndicator.adaptive(),
                 )
@@ -193,6 +197,10 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                                         setState(() {
                                           selectedTimeIndex = index;
                                         });
+                                        selectedTime =
+                                            BlocProvider.of<DoctorDetailsCubit>(
+                                                    context)
+                                                .availTimes[index];
                                       },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(
@@ -215,7 +223,9 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                                           border: const Border(),
                                         ),
                                         child: Text(
-                                          '19:00',
+                                          BlocProvider.of<DoctorDetailsCubit>(
+                                                  context)
+                                              .availTimes[index],
                                           style: AppStyles.textStyle34w400roboto
                                               .copyWith(
                                             fontSize: 14 * SizeConfig.textRatio,
@@ -230,7 +240,11 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                                         SizedBox(
                                       width: 8 * SizeConfig.horizontalBlock,
                                     ),
-                                    itemCount: 5,
+                                    itemCount:
+                                        BlocProvider.of<DoctorDetailsCubit>(
+                                                context)
+                                            .availTimes
+                                            .length,
                                   ),
                                 ),
                                 if (isPicked == false &&
@@ -274,7 +288,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                                         //         context)
                                         //     .bookAppointment(
                                         //   doctorId: ,
-                                        //   startTime: '${datecon.text} ',
+                                        //   startTime: '${datecon.text} $selectedTime',
                                         // );
                                       }
                                     },
