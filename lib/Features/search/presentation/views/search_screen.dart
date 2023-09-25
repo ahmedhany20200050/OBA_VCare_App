@@ -54,7 +54,7 @@ class _SearchScreenState extends State<SearchScreen> {
       builder: (context, state) {
         var cubit = BlocProvider.of<GetDoctorsCubit>(context);
         return Scaffold(
-            body: SafeArea(
+            body: state is GetDoctorsCubitFailure?Center(child: CircularProgressIndicator(color: AppColors.primaryColor,),):SafeArea(
                         child: Column(
                           children: [
                             Container(
@@ -100,7 +100,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                       },
                                       decoration: InputDecoration(
                                         border: InputBorder.none,
-                                        hintText: 'GetDoctors',
+                                        hintText: 'Search',
                                       ),
                                     ),
                                   ),
@@ -159,7 +159,7 @@ class DoctorGetDoctorsItem extends StatelessWidget {
                 children: [
                   Text("${doctor.name}",style: AppStyles.homeTitleStyle,),
                   const Spacer(),
-                  Text("${doctor.specialization}",style: AppStyles.descriptionStyle,),
+                  Text("${doctor.specialization?.name}",style: AppStyles.descriptionStyle,),
                 ],
               ),
             ],
