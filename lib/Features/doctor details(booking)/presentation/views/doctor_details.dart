@@ -22,6 +22,12 @@ class _DoctorDetailsState extends State<DoctorDetails> {
   bool isPicked = false;
 
   @override
+  void initState() {
+    // BlocProvider.of<DoctorDetailsCubit>(context).showDoctorDetails(docId: );
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<DoctorDetailsCubit, DoctorDetailsState>(
       listener: (context, state) {},

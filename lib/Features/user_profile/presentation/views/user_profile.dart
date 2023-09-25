@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Features/user_profile_edit/presentation/views/user_profile_edit.dart';
 import 'package:untitled/core/app_colors.dart';
 import 'package:untitled/core/app_styles.dart';
 import 'package:untitled/core/utils/size_config.dart';
@@ -41,10 +42,13 @@ class UserProfile extends StatelessWidget {
                       color: AppColors.colorBlack.withOpacity(0.5),
                     ),
                   ),
-                  Icon(
-                    Icons.edit,
-                    size: 20,
-                    color: AppColors.colorBlack.withOpacity(0.5),
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).pushNamed(UserProfileEdit.id),
+                    child: Icon(
+                      Icons.edit,
+                      size: 20,
+                      color: AppColors.colorBlack.withOpacity(0.5),
+                    ),
                   ),
                 ],
               ),

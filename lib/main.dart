@@ -13,6 +13,7 @@ import 'package:untitled/Features/login/presentation/manger/cubit/login_cubit.da
 import 'package:untitled/Features/register/presentation/manger/cubit/register_cubit.dart';
 import 'package:untitled/Features/success_state/view/success_screen.dart';
 import 'package:untitled/Features/user_profile/presentation/views/user_profile.dart';
+import 'package:untitled/Features/user_profile_edit/presentation/views/user_profile_edit.dart';
 // import 'package:untitled/Features/user_profile/presentation/views/user_profile.dart';
 // import 'package:untitled/Features/register/presentation/views/register_screen.dart';
 import 'package:untitled/core/app_colors.dart';
@@ -37,9 +38,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => RegisterCubit()),
         BlocProvider(create: (context) => LoginCubit()),
+        BlocProvider(create: (context) => DoctorDetailsCubit()),
         BlocProvider(
             create: (context) =>
-                DoctorDetailsCubit()..showDoctorDetails(docId: '3')),
+                DoctorDetailsCubit()),
         BlocProvider<BottomNavigationBarCubit>(
             create: (context) => BottomNavigationBarCubit()),
       ],
@@ -51,7 +53,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        initialRoute: SuccessStateScreen.id,
+        initialRoute: UserProfileEdit.id,
         routes: {
           LoginScreen.id: (context) => const LoginScreen(),
           RegisterScreen.id: (context) => const RegisterScreen(),
@@ -63,6 +65,7 @@ class MyApp extends StatelessWidget {
           DoctorDetails.id: (context) => const DoctorDetails(),
           UserProfile.id: (context) => const UserProfile(),
           SuccessStateScreen.id: (context) => const SuccessStateScreen(),
+          UserProfileEdit.id: (context) => const UserProfileEdit(),
         },
       ),
     );
