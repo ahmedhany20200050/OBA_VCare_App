@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/Features/user_profile/data/repo/get_user_profile_repo.dart';
-import 'package:untitled/Features/user_profile/presentation/manager/cubits/user_profile_states.dart';
+import 'package:untitled/Features/user_profile/presentation/manager/cubits/user_profile/user_profile_states.dart';
 
 class UserProfileCubit extends Cubit<UserProfileStates> {
   UserProfileCubit() : super(UserProfileInitialState());

@@ -8,6 +8,7 @@ class EndPoints {
   static String userProfileEndpoint = '/user/profile';
   static String historyEndpoint = '/appointment/index';
   static String allDoctorsEndpoint = '/doctor/index';
+  static String logoutEndpoint = '/auth/logout';
   
 
 }

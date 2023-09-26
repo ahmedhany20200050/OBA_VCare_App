@@ -1,5 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:untitled/Features/user_profile/data/models/user_model.dart';
+import 'package:untitled/Features/home/data/models/user_model.dart';
 import 'package:untitled/core/helpers/api.dart';
 import 'package:untitled/core/utils/endpoints.dart';
 

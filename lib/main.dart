@@ -11,10 +11,12 @@ import 'package:untitled/Features/home/presentation/manager/cubits/bottom_naviga
 import 'package:untitled/Features/home/presentation/manager/cubits/cubit/home_cubit.dart';
 import 'package:untitled/Features/home/presentation/views/home_screen.dart';
 import 'package:untitled/Features/login/presentation/manger/cubit/login_cubit.dart';
+import 'package:untitled/Features/logout/presentation/manager/cubits/logout_cubit.dart';
 // import 'package:untitled/Features/login/presentation/views/search_screen.dart';
 import 'package:untitled/Features/register/presentation/manger/cubit/register_cubit.dart';
 import 'package:untitled/Features/success_state/view/success_screen.dart';
-import 'package:untitled/Features/user_profile/presentation/manager/cubits/user_profile_cubit.dart';
+import 'package:untitled/Features/user_profile/presentation/manager/cubits/get_all_appointments/get_all_appointments_cubit.dart';
+import 'package:untitled/Features/user_profile/presentation/manager/cubits/user_profile/user_profile_cubit.dart';
 import 'package:untitled/Features/user_profile_edit/presentation/views/user_profile_edit.dart';
 import 'package:untitled/Features/search/presentation/manger/cubit/search_cubit.dart';
 import 'package:untitled/Features/search/presentation/views/search_screen.dart';
@@ -51,6 +53,8 @@ class MyApp extends StatelessWidget {
         BlocProvider<BottomNavigationBarCubit>(
             create: (context) => BottomNavigationBarCubit()),
         BlocProvider<UserProfileCubit>(create: (context) => UserProfileCubit()),
+        BlocProvider<LogoutCubit>(create: (context)=>LogoutCubit()),
+        BlocProvider<GetAllAppointmentCubit>(create: (context)=>GetAllAppointmentCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

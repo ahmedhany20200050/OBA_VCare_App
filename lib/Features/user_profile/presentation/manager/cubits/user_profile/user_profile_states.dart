@@ -1,4 +1,4 @@
-import 'package:untitled/Features/user_profile/data/models/user_model.dart';
+import 'package:untitled/Features/home/data/models/user_model.dart';
 
 abstract class UserProfileStates {}
 
