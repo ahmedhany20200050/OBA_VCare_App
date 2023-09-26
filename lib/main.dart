@@ -14,10 +14,12 @@ import 'package:untitled/Features/login/presentation/manger/cubit/login_cubit.da
 // import 'package:untitled/Features/login/presentation/views/search_screen.dart';
 import 'package:untitled/Features/register/presentation/manger/cubit/register_cubit.dart';
 import 'package:untitled/Features/success_state/view/success_screen.dart';
+import 'package:untitled/Features/user_profile/presentation/manager/cubits/user_profile_cubit.dart';
 import 'package:untitled/Features/user_profile_edit/presentation/views/user_profile_edit.dart';
 import 'package:untitled/Features/search/presentation/manger/cubit/search_cubit.dart';
 import 'package:untitled/Features/search/presentation/views/search_screen.dart';
 import 'package:untitled/Features/user_profile/presentation/views/user_profile.dart';
+import 'package:untitled/Features/view_all/presentation/view_all_screen.dart';
 // import 'package:untitled/Features/user_profile/presentation/views/user_profile.dart';
 // import 'package:untitled/Features/register/presentation/views/register_screen.dart';
 import 'package:untitled/core/app_colors.dart';
@@ -48,6 +50,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => GetDoctorsCubit()),
         BlocProvider<BottomNavigationBarCubit>(
             create: (context) => BottomNavigationBarCubit()),
+        BlocProvider<UserProfileCubit>(create: (context) => UserProfileCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -73,7 +76,7 @@ class MyApp extends StatelessWidget {
           UserProfile.id:(context) => const UserProfile(),
           SearchScreen.id:(context) => const SearchScreen(),
           HistoryDetails.id:(context) => const HistoryDetails(),
-
+          ViewAllScreen.id:(context) => const ViewAllScreen(),
         },
       ),
     );

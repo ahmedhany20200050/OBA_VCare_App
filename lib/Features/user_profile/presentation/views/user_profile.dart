@@ -1,165 +1,191 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/Features/home/data/models/history_model.dart';
-import 'package:untitled/Features/home/data/models/user_model.dart';
+import 'package:untitled/Features/user_profile/presentation/manager/cubits/user_profile_cubit.dart';
+import 'package:untitled/Features/user_profile/presentation/manager/cubits/user_profile_states.dart';
 import 'package:untitled/Features/user_profile_edit/presentation/views/user_profile_edit.dart';
 import 'package:untitled/core/app_colors.dart';
 import 'package:untitled/core/app_styles.dart';
 import 'package:untitled/core/utils/size_config.dart';
+import 'package:untitled/core/widgets/get_error_message.dart';
 
-class UserProfile extends StatelessWidget {
-  const UserProfile(
-      {super.key, required this.userModel, required this.historyList});
+class UserProfile extends StatefulWidget {
+  const UserProfile({super.key});
   static String id = "UserProfile";
 
-  final UserModel userModel;
-  final List<HistoryModel> historyList;
+  @override
+  State<UserProfile> createState() => _UserProfileState();
+}
+
+class _UserProfileState extends State<UserProfile> {
+  @override
+  void initState() {
+    UserProfileCubit.get(context).getUserProfile();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 16 * SizeConfig.horizontalBlock,
-        vertical: 20 * SizeConfig.verticalBlock,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Icon(
-            Icons.person_2_outlined,
-            size: 40,
+    return BlocBuilder<UserProfileCubit, UserProfileStates>(
+        builder: (_, state) {
+      if (state is UserProfileSuccessState) {
+        return Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 16 * SizeConfig.horizontalBlock,
+            vertical: 20 * SizeConfig.verticalBlock,
           ),
-          SizedBox(
-            height: 10 * SizeConfig.verticalBlock,
-          ),
-          Text(
-            userModel.name!,
-            style: AppStyles.textStyle24w400inter,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'edit account details ',
-                style: AppStyles.textStyle24w400inter.copyWith(
-                  fontSize: 18,
-                  color: AppColors.colorBlack.withOpacity(0.5),
-                ),
+              const Icon(
+                Icons.person_2_outlined,
+                size: 40,
               ),
-              GestureDetector(
-                onTap: () => Navigator.of(context)
-                    .pushNamed(UserProfileEdit.id, arguments: userModel.id.toString()),
-                child: Icon(
-                  Icons.edit,
-                  size: 20,
-                  color: AppColors.colorBlack.withOpacity(0.5),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20 * SizeConfig.verticalBlock,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 10 * SizeConfig.horizontalBlock,
-            ),
-            child: Column(
-              children: [
-                const Divider(
-                  thickness: 2,
-                ),
-                SizedBox(
-                  height: 20 * SizeConfig.verticalBlock,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Icon(
-                      Icons.email_outlined,
-                      size: 40,
-                      color: AppColors.colorBlack,
-                    ),
-                    SizedBox(
-                      width: 10 * SizeConfig.horizontalBlock,
-                    ),
-                    Text(
-                      userModel.email!,
-                      style: AppStyles.textStyle24w400inter.copyWith(
-                        fontSize: 18,
-                        color: AppColors.colorBlack,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20 * SizeConfig.verticalBlock,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Icon(
-                      Icons.phone_outlined,
-                      size: 40,
-                      color: AppColors.colorBlack,
-                    ),
-                    SizedBox(
-                      width: 10 * SizeConfig.horizontalBlock,
-                    ),
-                    Text(
-                      userModel.phone!,
-                      style: AppStyles.textStyle24w400inter.copyWith(
-                        fontSize: 18,
-                        color: AppColors.colorBlack,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 20 * SizeConfig.verticalBlock,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'History',
-              style: AppStyles.textStyle24w400inter,
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: SizedBox(
-              width: 60 * SizeConfig.horizontalBlock,
-              child: const Divider(
-                thickness: 2,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20 * SizeConfig.verticalBlock,
-          ),
-          Expanded(
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              itemCount: historyList.isEmpty ? 2 : historyList.length,
-              itemBuilder: (context, index) => historyList.isEmpty
-                  ? const SizedBox()
-                  : historyList.length == 1
-                      ? HistoryComponant(
-                          historyModel: historyList[0],
-                        )
-                      : HistoryComponant(
-                          historyModel: historyList[index],
-                        ),
-              separatorBuilder: (context, index) => SizedBox(
+              SizedBox(
                 height: 10 * SizeConfig.verticalBlock,
               ),
-            ),
+              Text(
+                state.userModel.name!,
+                style: AppStyles.textStyle24w400inter,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'edit account details ',
+                    style: AppStyles.textStyle24w400inter.copyWith(
+                      fontSize: 18,
+                      color: AppColors.colorBlack.withOpacity(0.5),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).pushNamed(
+                        UserProfileEdit.id,
+                        arguments: state.userModel.id.toString()),
+                    child: Icon(
+                      Icons.edit,
+                      size: 20,
+                      color: AppColors.colorBlack.withOpacity(0.5),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20 * SizeConfig.verticalBlock,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10 * SizeConfig.horizontalBlock,
+                ),
+                child: Column(
+                  children: [
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    SizedBox(
+                      height: 20 * SizeConfig.verticalBlock,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Icon(
+                          Icons.email_outlined,
+                          size: 40,
+                          color: AppColors.colorBlack,
+                        ),
+                        SizedBox(
+                          width: 10 * SizeConfig.horizontalBlock,
+                        ),
+                        Text(
+                          state.userModel.email!,
+                          style: AppStyles.textStyle24w400inter.copyWith(
+                            fontSize: 18,
+                            color: AppColors.colorBlack,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20 * SizeConfig.verticalBlock,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Icon(
+                          Icons.phone_outlined,
+                          size: 40,
+                          color: AppColors.colorBlack,
+                        ),
+                        SizedBox(
+                          width: 10 * SizeConfig.horizontalBlock,
+                        ),
+                        Text(
+                          state.userModel.phone!,
+                          style: AppStyles.textStyle24w400inter.copyWith(
+                            fontSize: 18,
+                            color: AppColors.colorBlack,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20 * SizeConfig.verticalBlock,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'History',
+                  style: AppStyles.textStyle24w400inter,
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: SizedBox(
+                  width: 60 * SizeConfig.horizontalBlock,
+                  child: const Divider(
+                    thickness: 2,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20 * SizeConfig.verticalBlock,
+              ),
+              // Expanded(
+              //   child: ListView.separated(
+              //     physics: const BouncingScrollPhysics(),
+              //     itemCount: historyList.isEmpty ? 2 : historyList.length,
+              //     itemBuilder: (context, index) => historyList.isEmpty
+              //         ? const SizedBox()
+              //         : historyList.length == 1
+              //             ? HistoryComponant(
+              //                 historyModel: historyList[0],
+              //               )
+              //             : HistoryComponant(
+              //                 historyModel: historyList[index],
+              //               ),
+              //     separatorBuilder: (context, index) => SizedBox(
+              //       height: 10 * SizeConfig.verticalBlock,
+              //     ),
+              //   ),
+              // ),
+            ],
           ),
-        ],
-      ),
-    );
+        );
+      } else if (state is UserProfileFailureState) {
+        return GetErrorMessage(
+            errorMessage: state.errorMessage,
+            onPressed: () {
+              UserProfileCubit.get(context).getUserProfile();
+            });
+      } else {
+        return const Center(
+          child: CircularProgressIndicator.adaptive(),
+        );
+      }
+    });
   }
 }
 

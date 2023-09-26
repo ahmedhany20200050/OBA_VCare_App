@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:untitled/Features/home/data/models/history_model.dart';
 import 'package:untitled/Features/home/data/models/major_model.dart';
-import 'package:untitled/Features/home/data/models/user_model.dart';
+import 'package:untitled/Features/user_profile/data/models/user_model.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/cubit/home_state.dart';
 import 'package:untitled/core/helpers/api.dart';
 import 'package:untitled/core/utils/endpoints.dart';
