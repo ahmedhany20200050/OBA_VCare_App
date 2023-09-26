@@ -26,8 +26,6 @@ class AppStyles {
     fontSize: 16*SizeConfig.textRatio,
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
-    height: 1,
-    letterSpacing: 1,
   );
   static TextStyle LogintextStyle3 = TextStyle(
     color: const Color(0xFF5A55CA),

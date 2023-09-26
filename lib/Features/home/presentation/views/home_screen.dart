@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/bottom_navigation_bar_cubit.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/bottom_navigation_bar_states.dart';
 import 'package:untitled/Features/home/presentation/views/widgets/home_body.dart';
+import 'package:untitled/Features/search/presentation/views/search_screen.dart';
 import 'package:untitled/Features/user_profile/presentation/views/user_profile.dart';
 import 'package:untitled/core/utils/app_assets.dart';
 import 'package:untitled/core/app_colors.dart';
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: const [
               HomeBody(),
               Text("Doctors"),
-              Text("Search"),
+              SearchScreen(),
               Text("History"),
               UserProfile()
             ],
