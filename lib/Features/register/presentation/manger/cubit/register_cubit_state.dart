@@ -7,7 +7,7 @@ final class RegisterCubitLoading extends RegisterCubitState {}
 final class RegisterCubitSuccess extends RegisterCubitState {}
 
 final class RegisterCubitFailure extends RegisterCubitState {
-  final String errmsg;
+  Map<String,dynamic> errmsg;
 
   RegisterCubitFailure({required this.errmsg});
 }

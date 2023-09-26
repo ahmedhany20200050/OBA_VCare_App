@@ -1,10 +1,10 @@
 // ignore_for_file: body_might_complete_normally_nullable
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Features/register/presentation/views/register_screen.dart';
 import '../../../../core/app_colors.dart';
 import '../../../../core/app_styles.dart';
@@ -27,24 +27,16 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController password = TextEditingController();
   bool keepMeLoggedIn = true;
 
-  String emailErrors(state){
+  String errors(state,String error){
     if(state is LoginCubitFailure){
-      if(state.err.containsKey('email')){
-        print(state.err['email'][0].toString());
-        return state.err['email'][0].toString();
+      if(state.err.containsKey(error)){
+        // print(state.err['email'][0].toString());
+        return state.err[error][0].toString();
       }
     }
     return'';
   }
-  String passwordErrors(state){
-    if(state is LoginCubitFailure){
-      if(state.err.containsKey('password')){
-        print(state.err['password'][0].toString());
-        return state.err['password'][0].toString();
-      }
-    }
-    return'';
-  }
+
 
 
   @override
@@ -62,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
         }
         if(state is LoginCubitFailure){
             if(state.err.containsKey('error')){
-              print(state.err['error'].toString());
+              // print(state.err['error'].toString());
               AnimatedSnackBar.material(
                 state.err['error'].toString().replaceAll("Exception:", " "),
                 type: AnimatedSnackBarType.error,
@@ -134,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                     ),
                                     state is LoginCubitFailure?
-                                    Text(emailErrors(state),style: AppStyles.textFieldErrorStyle,):Container(),
+                                    Text(errors(state,"email"),style: AppStyles.textFieldErrorStyle,):Container(),
                                     const SizedBox(
                                       height: 24,
                                     ),
@@ -163,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                     ),
                                     state is LoginCubitFailure?
-                                        Text(passwordErrors(state),style: AppStyles.textFieldErrorStyle,):Container(),
+                                        Text(errors(state,'password'),style: AppStyles.textFieldErrorStyle,):Container(),
                                     SizedBox(
                                       height: 24*SizeConfig.verticalBlock,
                                     ),

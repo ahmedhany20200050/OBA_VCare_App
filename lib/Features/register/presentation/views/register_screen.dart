@@ -1,9 +1,9 @@
 // ignore_for_file: body_might_complete_normally_nullable
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/material.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Features/login/presentation/views/login_screen.dart';
 import '../../../../core/app_colors.dart';
@@ -30,6 +30,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController confirmPassword = TextEditingController();
   bool isMale = true;
 
+
+  String errors(state,String error){
+    if(state is RegisterCubitFailure){
+      if(state.errmsg.containsKey(error)){
+        // print(state.err['email'][0].toString());
+        return state.errmsg[error][0].toString();
+      }
+    }
+    return'';
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RegisterCubit, RegisterCubitState>(
@@ -43,6 +54,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
             duration: const Duration(seconds: 4),
           ).show(context);
         }
+
+        if(state is RegisterCubitFailure){
+          if(state.errmsg.containsKey('error')){
+            // print(state.err['error'].toString());
+            AnimatedSnackBar.material(
+              state.errmsg['error'].toString().replaceAll("Exception:", " "),
+              type: AnimatedSnackBarType.error,
+              duration: const Duration(seconds: 4),
+            ).show(context);
+          }
+
+        }
       },
       builder: (context, state) {
         var registerCubit = BlocProvider.of<RegisterCubit>(context);
@@ -51,10 +74,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                : state is RegisterCubitFailure
-                    ? Center(
-                        child: Text(state.errmsg),
-                      )
                     : SafeArea(
                         child: SingleChildScrollView(
                           physics: const ClampingScrollPhysics(),
@@ -112,6 +131,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         ),
                                       ),
                                     ),
+                                    state is RegisterCubitFailure?
+                                    Text(errors(state,"name"),style: AppStyles.textFieldErrorStyle,):Container(),
                                     const SizedBox(
                                       height: 24,
                                     ),
@@ -144,6 +165,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         ),
                                       ),
                                     ),
+                                    state is RegisterCubitFailure?
+                                    Text(errors(state,"email"),style: AppStyles.textFieldErrorStyle,):Container(),
                                     const SizedBox(
                                       height: 24,
                                     ),
@@ -175,6 +198,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         ),
                                       ),
                                     ),
+                                    state is RegisterCubitFailure?
+                                    Text(errors(state,"phone"),style: AppStyles.textFieldErrorStyle,):Container(),
                                     const SizedBox(
                                       height: 24,
                                     ),
@@ -182,8 +207,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       obscureText: true,
                                       controller: password,
                                       validator: (value) {
-                                        if (value!.length < 8 || value.isEmpty) {
-                                          return 'Password must be more than or equal 8 characters.';
+                                        if (value!.isEmpty) {
+                                          return 'Password must not be empty.';
                                         }
                                       },
                                       decoration: InputDecoration(
@@ -264,6 +289,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                     Row(
                                       children: [
+
                                         Text("Already have account?"),
                                         GestureDetector(
                                           onTap: (){

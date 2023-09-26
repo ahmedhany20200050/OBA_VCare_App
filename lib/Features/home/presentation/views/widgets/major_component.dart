@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Features/home/data/models/major_model.dart';
 import 'package:untitled/Features/home/presentation/views/widgets/doctor_component.dart';
 import 'package:untitled/core/utils/size_config.dart';
 
 class MajorComponent extends StatelessWidget {
-  final String majorTitle;
-  const MajorComponent({super.key, required this.majorTitle});
+  final MajorModel majorModel;
+  const MajorComponent({super.key, required this.majorModel});
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +17,18 @@ class MajorComponent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(majorTitle),
+          Text(majorModel.name!),
           SizedBox(
             height: 5 * SizeConfig.verticalBlock,
           ),
           SizedBox(
             height: 210 * SizeConfig.verticalBlock,
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: majorModel.doctors!.length,
               itemBuilder: (context, index) => Container(
                   margin:
                       EdgeInsets.only(right: 8 * SizeConfig.horizontalBlock),
-                  child: const DoctorComponent()),
+                  child:  DoctorComponent(doctorModel: majorModel.doctors![index],),),
               scrollDirection: Axis.horizontal,
             ),
           )
