@@ -12,9 +12,8 @@ class MajorComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-          top: 8 * SizeConfig.verticalBlock,
-          left: 20 * SizeConfig.horizontalBlock,
-          right: 20 * SizeConfig.horizontalBlock),
+        top: 8 * SizeConfig.verticalBlock,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,

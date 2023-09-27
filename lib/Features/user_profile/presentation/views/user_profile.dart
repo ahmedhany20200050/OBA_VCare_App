@@ -167,9 +167,11 @@ class _UserProfileState extends State<UserProfile> {
                       if (state is GetAllAppointmentsSuccessState) {
                         return ListView.separated(
                           physics: const BouncingScrollPhysics(),
-                          itemCount:
-                              state.appointments.isEmpty ? 2 : state.appointments.length,
-                          itemBuilder: (context, index) => state.appointments.isEmpty
+                          itemCount: state.appointments.isEmpty
+                              ? 2
+                              : state.appointments.length,
+                          itemBuilder: (context, index) => state
+                                  .appointments.isEmpty
                               ? const SizedBox()
                               : state.appointments.length == 1
                                   ? HistoryComponant(
@@ -189,7 +191,7 @@ class _UserProfileState extends State<UserProfile> {
                               GetAllAppointmentCubit.get(context)
                                   .getAllAppointments();
                             });
-                      }else{
+                      } else {
                         return const Center(
                           child: CircularProgressIndicator.adaptive(),
                         );

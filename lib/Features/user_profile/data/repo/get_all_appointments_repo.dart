@@ -9,10 +9,10 @@ class GetAllAppointmentsRepo {
     var token = await storage.read(key: 'token');
     final data = await Api()
         .get(url: EndPoints.baseUrl + EndPoints.historyEndpoint, token: token);
-    List<HistoryModel> appointments = [];
-    appointments.addAll(data['data']
+    print(data['data']);
+    return data['data']
         .map((history) => HistoryModel.fromJson(history))
-        .toList<HistoryModel>());
-    return appointments;
+        .toList()
+        .cast<HistoryModel>();
   }
 }
