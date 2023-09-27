@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:untitled/core/app_colors.dart';
 import 'package:untitled/core/app_styles.dart';
 import 'package:untitled/core/utils/app_assets.dart';
 import 'package:untitled/core/utils/size_config.dart';
 
 class CustomExpansionTile extends StatefulWidget {
   final String title;
-  const CustomExpansionTile({super.key, required this.title});
+  final List<Widget> children;
+  const CustomExpansionTile({super.key, required this.title, required this.children});
 
   @override
   State<CustomExpansionTile> createState() => _CustomExpansionTileState();
@@ -37,7 +37,7 @@ class _CustomExpansionTileState extends State<CustomExpansionTile> {
           this.isExpanded = isExpanded;
         });
       },
-      children: [],
+      children: widget.children,
     );
   }
 }
