@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:untitled/Features/doctor%20details(booking)/data/models/doctor_model.dart';
 import 'package:untitled/Features/doctor%20details(booking)/presentation/views/doctor_details.dart';
 import 'package:untitled/Features/home/data/models/major_model.dart';
 import 'package:untitled/core/app_colors.dart';

@@ -44,7 +44,12 @@ class AppStyles {
     height: 0.08,
     letterSpacing: 1,
   );
-
+  static final TextStyle color0xFF020D18FontSize12FontWeightW700 = TextStyle(
+    color: AppColors.color0xFF020D18,
+    fontSize: 12*SizeConfig.textRatio,
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w700,
+  );
   static TextStyle homeTitleStyle = TextStyle(
     color: const Color(0xFF091E4A),
     fontSize: 16 * SizeConfig.textRatio,
