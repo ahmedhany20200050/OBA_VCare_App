@@ -17,6 +17,7 @@ class GetDoctorsCubit extends Cubit<GetDoctorsCubitState> {
   late AllDoctorsResponse doctors;
   Future getAllDoctors() async {
     emit(GetDoctorsCubitLoading());
+    print("get doctors loading");
     String token= await const FlutterSecureStorage().read(key: "token")??"";
     try {
       http.Response response;

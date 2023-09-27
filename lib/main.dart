@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:untitled/Features/all_doctors_screen/presentation/views/all_doctors_screen.dart';
 import 'package:untitled/Features/doctor%20details(booking)/presentation/manager/cubit/doctor_details_cubit.dart';
 import 'package:untitled/Features/doctor%20details(booking)/presentation/views/doctor_details.dart';
 import 'package:untitled/Features/OnBoarding/presentation/views/first_on_boarding_screen.dart';
@@ -11,7 +12,7 @@ import 'package:untitled/Features/home/presentation/manager/cubits/bottom_naviga
 import 'package:untitled/Features/home/presentation/manager/cubits/cubit/home_cubit.dart';
 import 'package:untitled/Features/home/presentation/views/home_screen.dart';
 import 'package:untitled/Features/login/presentation/manger/cubit/login_cubit.dart';
-// import 'package:untitled/Features/login/presentation/views/search_screen.dart';
+// import 'package:untitled/Features/login/presentation/views/all_doctors_screen.dart';
 import 'package:untitled/Features/register/presentation/manger/cubit/register_cubit.dart';
 import 'package:untitled/Features/success_state/view/success_screen.dart';
 import 'package:untitled/Features/user_profile_edit/presentation/views/user_profile_edit.dart';
@@ -70,10 +71,10 @@ class MyApp extends StatelessWidget {
           // UserProfile.id: (context) => const UserProfile(),
           SuccessStateScreen.id: (context) => const SuccessStateScreen(),
           UserProfileEdit.id: (context) => const UserProfileEdit(),
-          UserProfile.id:(context) => const UserProfile(),
+          // UserProfile.id:(context) => const UserProfile(),
           SearchScreen.id:(context) => const SearchScreen(),
           HistoryDetails.id:(context) => const HistoryDetails(),
-
+          AllDoctorsScreen.id:(context) => const AllDoctorsScreen(),
         },
       ),
     );
