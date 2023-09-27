@@ -14,6 +14,8 @@ import 'package:untitled/core/app_colors.dart';
 import 'package:untitled/core/utils/size_config.dart';
 import 'package:untitled/core/widgets/custom_app_bar.dart';
 
+import '../../../../core/app_styles.dart';
+
 class HomeScreen extends StatefulWidget {
   static String id = "HomeScreen";
   const HomeScreen({super.key});
@@ -48,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const AllDoctorsScreen(),
                         const SearchScreen(),
-                        const Text("History"),
+                        HistoryBody(),
                         UserProfile(
                           userModel:
                               BlocProvider.of<HomeCubit>(context).userModel!,
@@ -134,3 +136,58 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
+class HistoryBody extends StatelessWidget {
+  const HistoryBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var historyList=BlocProvider.of<HomeCubit>(context).historyList;
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'History',
+              style: AppStyles.textStyle24w400inter,
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: SizedBox(
+              width: 60 * SizeConfig.horizontalBlock,
+              child: const Divider(
+                thickness: 2,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20 * SizeConfig.verticalBlock,
+          ),
+          Expanded(
+            child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              itemCount: historyList.isEmpty ? 2 : historyList.length,
+              itemBuilder: (context, index) => historyList.isEmpty
+                  ? const SizedBox()
+                  : historyList.length == 1
+                  ? HistoryComponant(
+                historyModel: historyList[0],
+              )
+                  : HistoryComponant(
+                historyModel: historyList[index],
+              ),
+              separatorBuilder: (context, index) => SizedBox(
+                height: 10 * SizeConfig.verticalBlock,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
