@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Features/history_details/presentation/views/history_details_screen.dart';
 import 'package:untitled/Features/home/data/models/history_model.dart';
 import 'package:untitled/Features/home/data/models/user_model.dart';
 import 'package:untitled/Features/user_profile_edit/presentation/views/user_profile_edit.dart';
@@ -172,19 +173,26 @@ class HistoryComponant extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        border: Border.all(),
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(5 * SizeConfig.verticalBlock),
-        child: Row(
-          children: [
-            Text(historyModel.appointmentTime!),
-            const Spacer(),
-            Text(historyModel.status!),
-          ],
+    return InkWell(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => HistoryDetails(historyModel: historyModel),));
+      },
+      child: Ink(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(5 * SizeConfig.verticalBlock),
+            child: Row(
+              children: [
+                Text(historyModel.appointmentTime!),
+                const Spacer(),
+                Text(historyModel.status!),
+              ],
+            ),
+          ),
         ),
       ),
     );

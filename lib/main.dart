@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
           UserProfileEdit.id: (context) => const UserProfileEdit(),
           // UserProfile.id:(context) => const UserProfile(),
           SearchScreen.id:(context) => const SearchScreen(),
-          HistoryDetails.id:(context) => const HistoryDetails(),
+          // HistoryDetails.id:(context) => const HistoryDetails(),
           AllDoctorsScreen.id:(context) => const AllDoctorsScreen(),
         },
       ),
