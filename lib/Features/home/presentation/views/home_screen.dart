@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:untitled/Features/all_doctors_screen/presentation/views/all_doctors_screen.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/bottom_navigation_bar_cubit.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/bottom_navigation_bar_states.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/cubit/home_cubit.dart';
@@ -45,8 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           majorList:
                               BlocProvider.of<HomeCubit>(context).majorList,
                         ),
-                        const Text("Doctors"),
-                        SearchScreen(),
+                        const AllDoctorsScreen(),
+                        const SearchScreen(),
                         const Text("History"),
                         UserProfile(
                           userModel:
