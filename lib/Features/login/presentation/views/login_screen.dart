@@ -182,7 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         const Text("No account yet?"),
                                         GestureDetector(
                                           onTap: (){
-                                            Navigator.of(context).pushNamed(RegisterScreen.id);
+                                            Navigator.of(context).pushReplacementNamed(RegisterScreen.id);
                                           },
                                           child: Text("Register here",style: AppStyles.homeProgressStyle.copyWith(
                                             fontSize: 12
