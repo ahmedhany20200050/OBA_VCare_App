@@ -59,11 +59,11 @@ class AnimatedTransition extends PageRouteBuilder {
   AnimatedTransition({required this.page})
       : super(
           pageBuilder: (context, animation, secondAnimation) => page,
-          transitionDuration: const Duration(milliseconds: 500),
+          transitionDuration: const Duration(seconds: 1),
           transitionsBuilder: (context, animation, secondAnimation, child) {
             const begin = Offset(-1.0, 0.0);
             const end = Offset.zero;
-            const curve = Curves.ease;
+            const curve = Curves.easeInOut;
 
             final tween = Tween(begin: begin, end: end);
             final curvedAnimation = CurvedAnimation(

@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: AppColors.primaryColor,
+          useMaterial3: true,
         ),
         onGenerateRoute: AppRouter.generatedRoutes,
         initialRoute: SplashScreen.id,
