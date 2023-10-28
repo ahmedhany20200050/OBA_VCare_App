@@ -8,7 +8,7 @@ import 'package:untitled/core/widgets/custom_text_form_field.dart';
 
 class UserProfileEdit extends StatefulWidget {
   const UserProfileEdit({super.key});
-  static String id = "UserProfileEdit";
+  static const id = "UserProfileEdit";
 
   @override
   State<UserProfileEdit> createState() => _UserProfileEditState();

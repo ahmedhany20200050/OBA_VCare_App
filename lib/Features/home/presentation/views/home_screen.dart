@@ -13,7 +13,7 @@ import 'package:untitled/core/utils/size_config.dart';
 import 'package:untitled/core/widgets/custom_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
-  static String id = "HomeScreen";
+  static const id = "HomeScreen";
   const HomeScreen({super.key});
 
   @override
