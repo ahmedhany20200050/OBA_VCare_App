@@ -6,6 +6,7 @@ import 'package:untitled/Features/home/presentation/manager/cubits/bottom_naviga
 import 'package:untitled/Features/home/presentation/manager/cubits/cubit/home_cubit.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/cubit/home_state.dart';
 import 'package:untitled/Features/home/presentation/views/widgets/home_body.dart';
+import 'package:untitled/Features/search/presentation/views/search_screen.dart';
 import 'package:untitled/Features/user_profile/presentation/views/user_profile.dart';
 import 'package:untitled/core/utils/app_assets.dart';
 import 'package:untitled/core/app_colors.dart';
@@ -45,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               BlocProvider.of<HomeCubit>(context).majorList,
                         ),
                         const Text("Doctors"),
-                        const Text("Search"),
+                        SearchScreen(),
                         const Text("History"),
                         UserProfile(
                           userModel:
