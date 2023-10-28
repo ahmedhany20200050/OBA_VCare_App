@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled/Features/doctor%20details(booking)/presentation/manager/cubit/doctor_details_cubit.dart';
 import 'package:untitled/core/helpers/app_router.dart';
 import 'package:untitled/Features/Splash/presentation/views/splash_screen.dart';
-import 'package:untitled/Features/history_details/presentation/manger/cubit/history_details_cubit.dart';
-import 'package:untitled/Features/history_details/presentation/views/history_details_screen.dart';
+import 'package:untitled/Features/doctor%20details(booking)/presentation/manager/cubit/doctor_details_cubit.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/bottom_navigation_bar_cubit.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/cubit/home_cubit.dart';
 import 'package:untitled/Features/login/presentation/manger/cubit/login_cubit.dart';
 import 'package:untitled/Features/register/presentation/manger/cubit/register_cubit.dart';
-import 'package:untitled/core/app_colors.dart';
 import 'package:untitled/core/helpers/observer.dart';
+import 'package:untitled/core/app_colors.dart';
 import 'package:untitled/core/utils/size_config.dart';
 
 void main() {
@@ -34,12 +32,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => RegisterCubit()),
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => DoctorDetailsCubit()),
-        BlocProvider(
-          create: (context) => DoctorDetailsCubit(),
-        ),
+        BlocProvider(create: (context) => DoctorDetailsCubit()),
         BlocProvider<BottomNavigationBarCubit>(
-          create: (context) => BottomNavigationBarCubit(),
-        ),
+            create: (context) => BottomNavigationBarCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
