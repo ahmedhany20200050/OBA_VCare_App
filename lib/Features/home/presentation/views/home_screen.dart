@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               BlocProvider.of<HomeCubit>(context).majorList,
                         ),
                         const Text("Doctors"),
-                        SearchScreen(),
+                       const SearchScreen(),
                         const Text("History"),
                         UserProfile(
                           userModel:
