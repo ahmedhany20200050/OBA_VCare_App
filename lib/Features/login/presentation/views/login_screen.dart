@@ -104,11 +104,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           hintText: "Email",
                           focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(
-                                  width: 2, color: AppColors.textFieldColor)),
+                                  width: 2, color: AppColors.primaryColor)),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4),
                             borderSide: const BorderSide(
-                              color: AppColors.textFieldColor,
+                              color: AppColors.primaryColor,
                               width: 1,
                             ),
                           ),
@@ -131,11 +131,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           hintText: "Password",
                           focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(
-                                  width: 2, color: AppColors.textFieldColor)),
+                                  width: 2, color: AppColors.primaryColor)),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4),
                             borderSide: const BorderSide(
-                              color: AppColors.textFieldColor,
+                              color: AppColors.primaryColor,
                               width: 1,
                             ),
                           ),
@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             )
                           : Container(),
                       SizedBox(
-                        height: 24 * SizeConfig.verticalBlock,
+                        height: 10 * SizeConfig.verticalBlock,
                       ),
                       Row(
                         children: [
@@ -164,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       SizedBox(
-                        height: 16 * SizeConfig.verticalBlock,
+                        height: 10 * SizeConfig.verticalBlock,
                       ),
                       Row(
                         children: [
@@ -177,8 +177,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                             child: Text(
                               "Register here",
-                              style: AppStyles.homeProgressStyle
-                                  .copyWith(fontSize: 12),
+                              style: AppStyles.calendarDayNamesStyle
+                                  .copyWith(color: AppColors.primaryColor),
                             ),
                           ),
                         ],
@@ -215,7 +215,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: Text(
                                   "Login",
                                   textAlign: TextAlign.center,
-                                  style: AppStyles.buttonTextStyle,
+                                  style: AppStyles.buttonTextStyle
+                                      .copyWith(fontWeight: FontWeight.bold),
                                 ),
                               ),
                             )

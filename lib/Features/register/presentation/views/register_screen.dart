@@ -117,7 +117,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide(
                                             width: 2,
-                                            color: AppColors.textFieldColor)),
+                                            color: AppColors.primaryColor)),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(4),
                                       borderSide: const BorderSide(),
@@ -134,6 +134,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   height: 24,
                                 ),
                                 TextFormField(
+                                  keyboardType: TextInputType.emailAddress,
                                   controller: email,
                                   validator: (value) {
                                     if (value!.isEmpty) {
@@ -149,11 +150,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide(
                                             width: 2,
-                                            color: AppColors.textFieldColor)),
+                                            color: AppColors.primaryColor)),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(4),
                                       borderSide: const BorderSide(
-                                        color: AppColors.textFieldColor,
+                                        color: AppColors.primaryColor,
                                         width: 1,
                                       ),
                                     ),
@@ -183,11 +184,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide(
                                             width: 2,
-                                            color: AppColors.textFieldColor)),
+                                            color: AppColors.primaryColor)),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(4),
                                       borderSide: const BorderSide(
-                                        color: AppColors.textFieldColor,
+                                        color: AppColors.primaryColor,
                                         width: 1,
                                       ),
                                     ),
@@ -203,7 +204,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   height: 24,
                                 ),
                                 TextFormField(
-                                  obscureText: true,
                                   controller: password,
                                   validator: (value) {
                                     if (value!.isEmpty) {
@@ -217,11 +217,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide(
                                             width: 2,
-                                            color: AppColors.textFieldColor)),
+                                            color: AppColors.primaryColor)),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(4),
                                       borderSide: const BorderSide(
-                                        color: AppColors.textFieldColor,
+                                        color: AppColors.primaryColor,
                                         width: 1,
                                       ),
                                     ),
@@ -231,7 +231,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   height: 24 * SizeConfig.verticalBlock,
                                 ),
                                 TextFormField(
-                                  obscureText: true,
                                   controller: confirmPassword,
                                   validator: (value) {
                                     if (value != password.text) {
@@ -245,11 +244,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide(
                                             width: 2,
-                                            color: AppColors.textFieldColor)),
+                                            color: AppColors.primaryColor)),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(4),
                                       borderSide: const BorderSide(
-                                        color: AppColors.textFieldColor,
+                                        color: AppColors.primaryColor,
                                         width: 1,
                                       ),
                                     ),
@@ -293,8 +292,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       },
                                       child: Text(
                                         "Login here",
-                                        style: AppStyles.homeProgressStyle
-                                            .copyWith(fontSize: 12),
+                                        style: AppStyles.calendarDayNamesStyle
+                                            .copyWith(
+                                                color: AppColors.primaryColor),
                                       ),
                                     ),
                                   ],
@@ -324,7 +324,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     child: Text(
                                       "Register",
                                       textAlign: TextAlign.center,
-                                      style: AppStyles.buttonTextStyle,
+                                      style: AppStyles.buttonTextStyle.copyWith(
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                 )
