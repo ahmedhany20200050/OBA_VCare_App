@@ -21,7 +21,7 @@ import '../../../../core/app_styles.dart';
 import '../manager/cubits/cubit/home_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
-  static String id = "HomeScreen";
+  static const id = "HomeScreen";
   const HomeScreen({super.key});
 
   @override

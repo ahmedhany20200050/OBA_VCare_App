@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-
 class AppColors {
   // تسميات احمد هاني
   static const Color textFieldColor = Color(0xFF091E4A);
-  static const Color primaryColor = Color(0xFF174068);
+  static const Color primaryColor = Color.fromARGB(255, 35, 97, 160);
   static const Color secondaryColor = Color(0xFF091E4A);
   static const Color color0xFFF3FAF9 = Color(0xFFF3FAF9);
   // تسمياتي
