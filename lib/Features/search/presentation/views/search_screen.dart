@@ -135,7 +135,12 @@ class DoctorGetDoctorsItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         //todo: push doctor details with doctor id
-        // Navigator.push(context, MaterialPageRoute(builder: (context) => DoctorDetails(doctor.id??1),));
+        Navigator.pushNamed(
+          context,
+          DoctorDetails.id,
+          arguments: doctor.id.toString(),
+        );
+        // Navigator.push(context, MaterialPageRoute(builder: (context) => DoctorDetails(),));
       },
       child: Ink(
         child: Container(
