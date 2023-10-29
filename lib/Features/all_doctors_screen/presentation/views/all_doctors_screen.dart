@@ -2,12 +2,9 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/Features/doctor%20details(booking)/data/models/doctor_model.dart';
 import 'package:untitled/Features/home/data/models/major_model.dart' as basel;
 import 'package:untitled/Features/home/presentation/views/widgets/doctor_component.dart';
-import 'package:untitled/core/utils/size_config.dart';
 import '../../../../core/app_colors.dart';
-
 import '../../../search/data/all_doctors_response.dart';
 import '../../../search/presentation/manger/cubit/search_cubit.dart';
 import '../../../search/presentation/manger/cubit/search_cubit_state.dart';
