@@ -93,7 +93,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        "create an account and start booking now.",
+                                        "create an account and start booking now",
                                         style: AppStyles.descriptionStyle,
                                         textAlign: TextAlign.center,
                                       ),
