@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Features/OnBoarding/presentation/views/onboarding_pages.dart';
 import 'package:untitled/Features/doctor%20details(booking)/presentation/views/doctor_details.dart';
 import 'package:untitled/Features/home/presentation/views/home_screen.dart';
-import 'package:untitled/Features/OnBoarding/presentation/views/first_on_boarding_screen.dart';
-import 'package:untitled/Features/OnBoarding/presentation/views/second_on_boarding_screen.dart';
 import 'package:untitled/Features/Splash/presentation/views/splash_screen.dart';
 import 'package:untitled/Features/login/presentation/views/login_screen.dart';
 import 'package:untitled/Features/register/presentation/views/register_screen.dart';
@@ -29,13 +28,9 @@ class AppRouter {
         return AnimatedTransition(
           page: const HomeScreen(),
         );
-      case FirstOnBoardingScreen.id:
+      case OnBoardingPages.id:
         return AnimatedTransition(
-          page: const FirstOnBoardingScreen(),
-        );
-      case SecondOnBoardingScreen.id:
-        return AnimatedTransition(
-          page: const SecondOnBoardingScreen(),
+          page: const OnBoardingPages(),
         );
       case DoctorDetails.id:
         return AnimatedTransition(

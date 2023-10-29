@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/Features/OnBoarding/presentation/views/first_on_boarding_screen.dart';
+import 'package:untitled/Features/OnBoarding/presentation/views/onboarding_pages.dart';
 import 'package:untitled/Features/login/presentation/views/login_screen.dart';
 import 'package:untitled/core/utils/size_config.dart';
 import '../../../home/presentation/views/home_screen.dart';
@@ -27,8 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       bool? b = per.getBool("firstTime");
       if (b == null) {
-        Navigator.of(context).pushReplacementNamed(FirstOnBoardingScreen.id);
-        await per.setBool("firstTime", true);
+        Navigator.of(context).pushReplacementNamed(OnBoardingPages.id);
       } else {
         if (token == null) {
           Navigator.of(context).pushReplacementNamed(LoginScreen.id);
