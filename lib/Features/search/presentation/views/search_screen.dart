@@ -2,6 +2,7 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/Features/doctor%20details(booking)/presentation/views/doctor_details.dart';
 import '../../../../core/app_colors.dart';
 import '../../../../core/app_styles.dart';
 import '../../../../core/utils/size_config.dart';

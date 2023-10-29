@@ -1,11 +1,8 @@
 // ignore_for_file: missing_required_param
 import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Features/search/presentation/manger/cubit/search_cubit_state.dart';
-// import '../../../../../core/helpers/api.dart';
 import '../../../../../core/utils/endpoints.dart';
 import '../../../data/all_doctors_response.dart';
 import 'package:http/http.dart'as http;
@@ -26,7 +23,6 @@ class GetDoctorsCubit extends Cubit<GetDoctorsCubitState> {
           'Authorization':"Bearer $token",
         }
       );
-      print(response.body);
       doctors= AllDoctorsResponse.fromJson(jsonDecode(response.body));
       if(response.statusCode>=200&&response.statusCode<300){
         emit(GetDoctorsCubitSuccess());

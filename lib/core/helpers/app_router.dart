@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/Features/OnBoarding/presentation/views/onboarding_pages.dart';
 import 'package:untitled/Features/doctor%20details(booking)/presentation/views/doctor_details.dart';
+import 'package:untitled/Features/filter_doctors/presentation/views/filter_doctors_screen.dart';
 import 'package:untitled/Features/home/presentation/views/home_screen.dart';
 import 'package:untitled/Features/Splash/presentation/views/splash_screen.dart';
 import 'package:untitled/Features/login/presentation/views/login_screen.dart';
 import 'package:untitled/Features/register/presentation/views/register_screen.dart';
+import 'package:untitled/Features/search/presentation/views/search_screen.dart';
 import 'package:untitled/Features/success_state/view/success_screen.dart';
 import 'package:untitled/Features/user_profile_edit/presentation/views/user_profile_edit.dart';
+import 'package:untitled/Features/view_all/presentation/view_all_screen.dart';
 
 class AppRouter {
   static Route? generatedRoutes(RouteSettings settings) {
@@ -43,6 +46,18 @@ class AppRouter {
       case UserProfileEdit.id:
         return AnimatedTransition(
           page: const UserProfileEdit(),
+        );
+      case SearchScreen.id:
+        return AnimatedTransition(
+          page: const SearchScreen(),
+        );
+      case ViewAllScreen.id:
+        return AnimatedTransition(
+          page: const ViewAllScreen(),
+        );
+      case FilterDoctorsScreen.id:
+        return AnimatedTransition(
+          page: const FilterDoctorsScreen(),
         );
     }
     return null;
