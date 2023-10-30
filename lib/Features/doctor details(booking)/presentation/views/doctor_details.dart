@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/Features/doctor%20details(booking)/presentation/manager/cubit/doctor_details_cubit.dart';
 import 'package:untitled/Features/doctor%20details(booking)/presentation/manager/cubit/doctor_details_state.dart';
+import 'package:untitled/Features/home/presentation/manager/cubits/cubit/home_cubit.dart';
 import 'package:untitled/core/app_colors.dart';
 import 'package:untitled/core/app_styles.dart';
 import 'package:untitled/core/utils/size_config.dart';
 
 class DoctorDetails extends StatefulWidget {
-  const DoctorDetails({super.key});
+  const DoctorDetails({super.key, required this.docID});
   static const id = "DoctorDetails";
-
+  final String docID;
   @override
   State<DoctorDetails> createState() => _DoctorDetailsState();
 }
@@ -22,14 +23,12 @@ class _DoctorDetailsState extends State<DoctorDetails> {
   String? selectedTime;
   bool firsttimeinthispage = true;
   bool isPicked = false;
-  String? docID;
 
   @override
   void initState() {
     Future.delayed(Duration.zero, () {
-      docID = ModalRoute.of(context)!.settings.arguments as String;
       BlocProvider.of<DoctorDetailsCubit>(context)
-          .showDoctorDetails(docId: docID!);
+          .showDoctorDetails(docId: widget.docID);
     });
     super.initState();
   }
@@ -39,6 +38,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
     return BlocConsumer<DoctorDetailsCubit, DoctorDetailsState>(
       listener: (context, state) {
         if (state is BookAppointmentSuccess) {
+          BlocProvider.of<HomeCubit>(context).getHistory();
           AnimatedSnackBar.material(
             'Appointment booked Successfully',
             type: AnimatedSnackBarType.success,
@@ -85,6 +85,8 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                                 ),
                                 child: IconButton(
                                   onPressed: () {
+                                    BlocProvider.of<DoctorDetailsCubit>(context)
+                                        .docmodel = null;
                                     Navigator.pop(context);
                                   },
                                   icon: Container(
@@ -302,7 +304,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                                         BlocProvider.of<DoctorDetailsCubit>(
                                                 context)
                                             .bookAppointment(
-                                          doctorId: docID!,
+                                          doctorId: widget.docID,
                                           startTime:
                                               '${datecon.text} $selectedTime',
                                         );

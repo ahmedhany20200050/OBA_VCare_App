@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled/Features/doctor%20details(booking)/presentation/views/doctor_details.dart';
 import 'package:untitled/Features/home/data/models/major_model.dart';
 import 'package:untitled/core/app_colors.dart';
 import 'package:untitled/core/app_styles.dart';
-import 'package:untitled/core/utils/app_assets.dart';
 import 'package:untitled/core/utils/size_config.dart';
 
 class DoctorComponent extends StatelessWidget {
@@ -13,27 +11,16 @@ class DoctorComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(
-          context,
-          DoctorDetails.id,
-          arguments: doctorModel.id.toString(),
-        );
-      },
+    return Card(
+      elevation: 10,
       child: Container(
         decoration: ShapeDecoration(
           color: AppColors.color0xFFF3FAF9,
           shape: RoundedRectangleBorder(
-            side: BorderSide(
-              width: SizeConfig.horizontalBlock,
-              strokeAlign: BorderSide.strokeAlignOutside,
-              color: AppColors.color0xFF173F68,
-            ),
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        width: 150 * SizeConfig.horizontalBlock,
+        width: 160 * SizeConfig.horizontalBlock,
         child: Column(
           children: [
             Container(
@@ -63,40 +50,71 @@ class DoctorComponent extends StatelessWidget {
                 children: [
                   Text(
                     doctorModel.name!,
-                    style: AppStyles.color0xFF020D18FontSize16FontWeightW400,
+                    style: AppStyles.color0xFF020D18FontSize16FontWeightW400
+                        .copyWith(
+                      color: AppColors.primaryColor,
+                    ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(
-                    height: 6 * SizeConfig.verticalBlock,
-                  ),
-                  Text(
-                    doctorModel.specialization!.name!,
-                    style: AppStyles.color0xB2030E19FontSize12FontWeightW400,
-                  ),
-                  Text(
-                    doctorModel.degree!,
-                    style: AppStyles.color0xB2030E19FontSize12FontWeightW400,
-                  ),
-                  SizedBox(
-                    height: 20 * SizeConfig.verticalBlock,
-                  ),
+                  SizedBox(height: 5 * SizeConfig.verticalBlock),
+                  Text('Specialization : ',
+                      style: AppStyles.color0xB2030E19FontSize12FontWeightW400
+                          .copyWith(
+                        color: AppColors.primaryColor,
+                      )),
                   Row(
                     children: [
-                      Text(
-                        "more details",
-                        style:
-                            AppStyles.color0xFF020D18FontSize12FontWeightW400,
-                      ),
-                      SizedBox(
-                        width: 5 * SizeConfig.horizontalBlock,
-                      ),
-                      SvgPicture.asset(
-                        AppAssets.arrowIcon,
-                        width: 20 * SizeConfig.horizontalBlock,
-                      )
+                      SizedBox(width: 30 * SizeConfig.horizontalBlock),
+                      Text(doctorModel.specialization!.name!,
+                          style: AppStyles
+                              .color0xB2030E19FontSize12FontWeightW400
+                              .copyWith(
+                            color: AppColors.colorBlack,
+                          )),
                     ],
-                  )
+                  ),
+                  Text('Degree : ',
+                      style: AppStyles.color0xB2030E19FontSize12FontWeightW400
+                          .copyWith(
+                        color: AppColors.primaryColor,
+                      )),
+                  Row(
+                    children: [
+                      SizedBox(width: 30 * SizeConfig.horizontalBlock),
+                      Text(
+                        doctorModel.degree!,
+                        style: AppStyles.color0xB2030E19FontSize12FontWeightW400
+                            .copyWith(
+                          color: AppColors.colorBlack,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 5 * SizeConfig.verticalBlock),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Card(
+                      color: AppColors.primaryColor,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            DoctorDetails.id,
+                            arguments: doctorModel.id.toString(),
+                          );
+                        },
+                        child: Text(
+                          "Book",
+                          style: AppStyles
+                              .color0xFF020D18FontSize12FontWeightW400
+                              .copyWith(
+                            color: AppColors.colorWhite,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             )

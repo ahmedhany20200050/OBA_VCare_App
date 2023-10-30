@@ -5,7 +5,6 @@ import 'package:untitled/Features/home/data/models/history_model.dart';
 import '../../../../core/app_colors.dart';
 import '../../../../core/app_styles.dart';
 import '../../../../core/utils/size_config.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
 import '../manger/cubit/history_details_cubit.dart';
 import '../manger/cubit/history_details_cubit_state.dart';
 
@@ -15,7 +14,9 @@ class HistoryDetails extends StatefulWidget {
   static const id = 'HistoryDetails';
 
   @override
-  State<HistoryDetails> createState() => _HistoryDetailsState(this.historyModel);
+  State<HistoryDetails> createState() =>
+      // ignore: no_logic_in_create_state
+      _HistoryDetailsState(historyModel);
 }
 
 class _HistoryDetailsState extends State<HistoryDetails> {
@@ -25,56 +26,98 @@ class _HistoryDetailsState extends State<HistoryDetails> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HistoryDetailsCubit, HistoryDetailsCubitState>(
-      listener: (context, state) {
-
-      },
+      listener: (context, state) {},
       builder: (context, state) {
-
         return Scaffold(
-          appBar: const CustomAppBar(),
-          drawer: const Drawer(),
+          appBar: AppBar(
+            centerTitle: true,
+            foregroundColor: AppColors.color0xFFF3FAF9,
+            elevation: 0,
+            backgroundColor: AppColors.primaryColor,
+            title: Text(
+              'VCare',
+              style: AppStyles.color0xFFF3FAF9FontSize20FontWeightW500,
+            ),
+          ),
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Doctor details",style: AppStyles.homeTitleStyle.copyWith(fontSize: 20*SizeConfig.textRatio),),
-                  SizedBox(
-                    height: 16*SizeConfig.verticalBlock,
+                  Text(
+                    "Doctor details",
+                    style: AppStyles.homeTitleStyle
+                        .copyWith(fontSize: 20 * SizeConfig.textRatio),
                   ),
-                   Property(name: "name",value: "${historyModel.doctor?.name}"),
-                   Property(name: "location", value: "${historyModel.doctor?.city?.name}"),
-                   Property(name: "email", value: "${historyModel.doctor?.email}"),
-                   Property(name: "phone", value: "${historyModel.doctor?.phone}"),
-                   SizedBox(height: 20*SizeConfig.verticalBlock,),
-                   Text("Patient details",style: AppStyles.homeTitleStyle.copyWith(fontSize: 20*SizeConfig.textRatio),),
-                   SizedBox(
-                     height: 16*SizeConfig.verticalBlock,
-                   ),
-                   Property(name: "name",value: "${historyModel.patient?.name}"),
-                   Property(name: "gender", value: "${historyModel.patient?.gender}"),
-                   Property(name: "email", value: "${historyModel.patient?.email}"),
-                   Property(name: "phone", value: "${historyModel.patient?.phone}"),
-                  SizedBox(height: 20*SizeConfig.verticalBlock,),
-                  Text("Appointment details",style: AppStyles.homeTitleStyle.copyWith(fontSize: 20*SizeConfig.textRatio),),
                   SizedBox(
-                    height: 16*SizeConfig.verticalBlock,
+                    height: 10 * SizeConfig.verticalBlock,
                   ),
-                  Property(name: "date",value: "${historyModel.appointmentTime}"),
+                  Property(name: "name", value: "${historyModel.doctor?.name}"),
+                  Property(
+                      name: "location",
+                      value: "${historyModel.doctor?.city?.name}"),
+                  Property(
+                      name: "email", value: "${historyModel.doctor?.email}"),
+                  Property(
+                      name: "phone", value: "${historyModel.doctor?.phone}"),
+                  SizedBox(
+                    height: 20 * SizeConfig.verticalBlock,
+                  ),
+                  Text(
+                    "Patient details",
+                    style: AppStyles.homeTitleStyle
+                        .copyWith(fontSize: 20 * SizeConfig.textRatio),
+                  ),
+                  SizedBox(
+                    height: 10 * SizeConfig.verticalBlock,
+                  ),
+                  Property(
+                      name: "name", value: "${historyModel.patient?.name}"),
+                  Property(
+                      name: "gender", value: "${historyModel.patient?.gender}"),
+                  Property(
+                      name: "email", value: "${historyModel.patient?.email}"),
+                  Property(
+                      name: "phone", value: "${historyModel.patient?.phone}"),
+                  SizedBox(
+                    height: 20 * SizeConfig.verticalBlock,
+                  ),
+                  Text(
+                    "Appointment details",
+                    style: AppStyles.homeTitleStyle
+                        .copyWith(fontSize: 20 * SizeConfig.textRatio),
+                  ),
+                  SizedBox(
+                    height: 10 * SizeConfig.verticalBlock,
+                  ),
+                  Property(
+                      name: "date", value: "${historyModel.appointmentTime}"),
                   Property(name: "id", value: "${historyModel.id}"),
                   Property(name: "status", value: "${historyModel.status}"),
                   SizedBox(
-                    height: 10*SizeConfig.verticalBlock,
+                    height: 30 * SizeConfig.verticalBlock,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 10*SizeConfig.verticalBlock,horizontal: 5*SizeConfig.horizontalBlock),
+                    padding: EdgeInsets.all(
+                      10 * SizeConfig.verticalBlock,
+                    ),
                     color: AppColors.primaryColor,
-                    child: Row(children: [
-                      Text("Total",style: AppStyles.homeTitleStyle.copyWith(fontWeight: FontWeight.w500,color: Colors.white),),
-                      const Spacer(),
-                      Text("\$${historyModel.appointmentPrice}",style: AppStyles.homeTitleStyle.copyWith(fontWeight: FontWeight.w500,color: Colors.white),),
-                    ],),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Total",
+                          style: AppStyles.homeTitleStyle.copyWith(
+                              fontWeight: FontWeight.w500, color: Colors.white),
+                        ),
+                        const Spacer(),
+                        Text(
+                          "${historyModel.appointmentPrice}\$",
+                          style: AppStyles.homeTitleStyle.copyWith(
+                              fontWeight: FontWeight.w500, color: Colors.white),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -88,19 +131,35 @@ class _HistoryDetailsState extends State<HistoryDetails> {
 
 class Property extends StatelessWidget {
   const Property({
-    super.key, required this.name, required this.value,
+    super.key,
+    required this.name,
+    required this.value,
   });
   final String name;
   final String value;
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-     Text(name,style: AppStyles.homeTitleStyle.copyWith(fontWeight: FontWeight.w500),overflow: TextOverflow.ellipsis,),
-     const Spacer(),
-     Text(value,style: AppStyles.homeTitleStyle.copyWith(fontWeight: FontWeight.w500),overflow: TextOverflow.ellipsis,),
-                  ],);
+    return Row(
+      children: [
+        SizedBox(
+          width: 80 * SizeConfig.horizontalBlock,
+          child: Text(
+            name,
+            style:
+                AppStyles.homeTitleStyle.copyWith(fontWeight: FontWeight.w500),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        Expanded(
+          child: Text(
+            value,
+            style:
+                AppStyles.homeTitleStyle.copyWith(fontWeight: FontWeight.w500),
+            maxLines: 2,
+          ),
+        ),
+      ],
+    );
   }
 }
-
-

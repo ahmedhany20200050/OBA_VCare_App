@@ -6,7 +6,6 @@ import 'package:untitled/Features/user_profile_edit/presentation/manager/cubits/
 import 'package:untitled/core/app_colors.dart';
 import 'package:untitled/core/app_styles.dart';
 import 'package:untitled/core/utils/size_config.dart';
-import 'package:untitled/core/widgets/custom_app_bar.dart';
 import 'package:untitled/core/widgets/custom_text_form_field.dart';
 
 class UserProfileEdit extends StatefulWidget {
@@ -29,8 +28,16 @@ class _UserProfileEditState extends State<UserProfileEdit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
-      drawer: const Drawer(),
+      appBar: AppBar(
+        centerTitle: true,
+        foregroundColor: AppColors.color0xFFF3FAF9,
+        elevation: 0,
+        backgroundColor: AppColors.primaryColor,
+        title: Text(
+          'VCare',
+          style: AppStyles.color0xFFF3FAF9FontSize20FontWeightW500,
+        ),
+      ),
       body: BlocListener<UpdateUserCubit, UpdateUserStates>(
         listener: (context, state) {
           if (state is UpdateUserSuccessState) {

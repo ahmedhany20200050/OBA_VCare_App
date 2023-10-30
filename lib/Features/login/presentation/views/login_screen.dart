@@ -38,12 +38,11 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocConsumer<LoginCubit, LoginCubitState>(
       listener: (context, state) {
         if (state is LoginCubitSuccess) {
-          //todo: navigate
           Navigator.of(context).pushReplacementNamed(HomeScreen.id);
           AnimatedSnackBar.material(
             'Login Success',
             type: AnimatedSnackBarType.success,
-            duration: const Duration(seconds: 4),
+            duration: const Duration(seconds: 2),
           ).show(context);
         }
         if (state is LoginCubitFailure) {

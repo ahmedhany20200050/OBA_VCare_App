@@ -1,4 +1,5 @@
-import 'package:animated_snack_bar/animated_snack_bar.dart';
+// ignore_for_file: deprecated_member_use
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,9 +7,6 @@ import 'package:untitled/Features/all_doctors_screen/presentation/views/all_doct
 import 'package:untitled/Features/home/presentation/manager/cubits/bottom_navigation_bar_cubit.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/bottom_navigation_bar_states.dart';
 import 'package:untitled/Features/home/presentation/views/widgets/home_body.dart';
-import 'package:untitled/Features/login/presentation/views/login_screen.dart';
-import 'package:untitled/Features/logout/presentation/manager/cubits/logout_cubit.dart';
-import 'package:untitled/Features/logout/presentation/manager/cubits/logout_states.dart';
 import 'package:untitled/Features/search/presentation/views/search_screen.dart';
 import 'package:untitled/Features/user_profile/presentation/views/user_profile.dart';
 import 'package:untitled/core/utils/app_assets.dart';
@@ -16,7 +14,6 @@ import 'package:untitled/core/app_colors.dart';
 import 'package:untitled/core/utils/size_config.dart';
 import 'package:untitled/core/utils/snack_bar_viewer.dart';
 import 'package:untitled/core/widgets/custom_app_bar.dart';
-
 import '../../../../core/app_styles.dart';
 import '../manager/cubits/cubit/home_cubit.dart';
 
@@ -29,142 +26,78 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with SnackBarViewer {
-  int _currentIndex = 0;
+  int _currentIndex = 2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const CustomAppBar(),
-        drawer: Drawer(
-          child: Center(
-              child: BlocListener<LogoutCubit, LogoutStates>(
-            listener: (_, state) {
-              if (state is LogoutSuccessState) {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, LoginScreen.id, (Route<dynamic> route) => false);
-                AnimatedSnackBar.material(
-                  'Logged out Successfully',
-                  type: AnimatedSnackBarType.success,
-                  duration: const Duration(seconds: 4),
-                ).show(context);
-              } else if (state is LogoutFailureState) {
-                AnimatedSnackBar.material(
-                  'Error Logging out',
-                  type: AnimatedSnackBarType.error,
-                  duration: const Duration(seconds: 4),
-                ).show(context);
-              } else {
-                showDialog(
-                    context: context,
-                    builder: (_) => const Center(
-                        child: CircularProgressIndicator.adaptive()));
-              }
-            },
-            child: TextButton(
-                onPressed: () {
-                  LogoutCubit.get(context).logout();
-                },
-                child: const Text("Logout")),
-          )),
+      appBar: const CustomAppBar(),
+      body: BlocBuilder<BottomNavigationBarCubit, BottomNavigationBarStates>(
+        builder: (_, __) => IndexedStack(
+          index: _currentIndex,
+          children: [
+            const AllDoctorsScreen(),
+            const SearchScreen(),
+            const HomeBody(),
+            const HistoryBody(),
+            UserProfile(
+              userModel: BlocProvider.of<HomeCubit>(context).userModel,
+              historyList: BlocProvider.of<HomeCubit>(context).historyList,
+            )
+          ],
         ),
-        body: BlocBuilder<BottomNavigationBarCubit, BottomNavigationBarStates>(
-          builder: (_, __) => IndexedStack(
-            index: _currentIndex,
-            children:  [
-              HomeBody(),
-              AllDoctorsScreen(),
-              SearchScreen(),
-              HistoryBody(),
-              UserProfile(
-                userModel:
-                BlocProvider.of<HomeCubit>(context).userModel,
-                historyList:
-                BlocProvider.of<HomeCubit>(context).historyList,
-              )
-            ],
-          ),
+      ),
+      bottomNavigationBar:
+          BlocBuilder<BottomNavigationBarCubit, BottomNavigationBarStates>(
+        builder: (_, __) => CurvedNavigationBar(
+          height: 50,
+          index: _currentIndex,
+          backgroundColor: AppColors.primaryColor,
+          items: [
+            SvgPicture.asset(
+              AppAssets.hospitalIcon,
+              width: 24 * SizeConfig.horizontalBlock,
+              height: 24 * SizeConfig.verticalBlock,
+            ),
+            SvgPicture.asset(
+              AppAssets.searchIcon,
+              width: 24 * SizeConfig.horizontalBlock,
+              height: 24 * SizeConfig.verticalBlock,
+              color: AppColors.color0xFF173F68,
+            ),
+            SvgPicture.asset(
+              AppAssets.homeIcon,
+              width: 12.25 * SizeConfig.horizontalBlock,
+              height: 24 * SizeConfig.verticalBlock,
+            ),
+            SvgPicture.asset(
+              AppAssets.clockIcon,
+              width: 24 * SizeConfig.horizontalBlock,
+              height: 24 * SizeConfig.verticalBlock,
+            ),
+            SvgPicture.asset(
+              AppAssets.accountIcon,
+              width: 24 * SizeConfig.horizontalBlock,
+              height: 24 * SizeConfig.verticalBlock,
+            ),
+          ],
+          onTap: (index) {
+            if (index != _currentIndex) {
+              _currentIndex = index;
+              BottomNavigationBarCubit.get(context).update();
+            }
+          },
         ),
-        bottomNavigationBar:
-            BlocBuilder<BottomNavigationBarCubit, BottomNavigationBarStates>(
-          builder: (_, __) => BottomNavigationBar(
-            onTap: (index) {
-              if (index != _currentIndex) {
-                _currentIndex = index;
-                BottomNavigationBarCubit.get(context).update();
-              }
-            },
-            type: BottomNavigationBarType.fixed,
-            currentIndex: _currentIndex,
-            elevation: 0,
-            selectedFontSize: 12 * SizeConfig.textRatio,
-            selectedItemColor: AppColors.color0xFF173F68,
-            unselectedFontSize: 12 * SizeConfig.textRatio,
-            unselectedItemColor: AppColors.color0xFF173F68,
-            showUnselectedLabels: true,
-            items: [
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  AppAssets.homeIcon,
-                  width: 12.25 * SizeConfig.horizontalBlock,
-                  height: 24 * SizeConfig.verticalBlock,
-                ),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  AppAssets.hospitalIcon,
-                  width: 24 * SizeConfig.horizontalBlock,
-                  height: 24 * SizeConfig.verticalBlock,
-                ),
-                label: 'Doctors',
-              ),
-              BottomNavigationBarItem(
-                icon: Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 8 * SizeConfig.horizontalBlock,
-                      vertical: 8 * SizeConfig.verticalBlock),
-                  decoration: ShapeDecoration(
-                    color: AppColors.color0xFF173F68,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                  ),
-                  child: SvgPicture.asset(
-                    AppAssets.searchIcon,
-                    width: 24 * SizeConfig.horizontalBlock,
-                    height: 24 * SizeConfig.verticalBlock,
-                  ),
-                ),
-                label: 'Search',
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  AppAssets.clockIcon,
-                  width: 24 * SizeConfig.horizontalBlock,
-                  height: 24 * SizeConfig.verticalBlock,
-                ),
-                label: 'History',
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  AppAssets.accountIcon,
-                  width: 24 * SizeConfig.horizontalBlock,
-                  height: 24 * SizeConfig.verticalBlock,
-                ),
-                label: 'Account',
-              ),
-            ],
-          ),
-        ));
+      ),
+    );
   }
 }
-
 
 class HistoryBody extends StatelessWidget {
   const HistoryBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var historyList=BlocProvider.of<HomeCubit>(context).historyList;
+    var historyList = BlocProvider.of<HomeCubit>(context).historyList;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -188,28 +121,24 @@ class HistoryBody extends StatelessWidget {
           SizedBox(
             height: 20 * SizeConfig.verticalBlock,
           ),
-          Expanded(
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              itemCount: historyList.isEmpty ? 2 : historyList.length,
-              itemBuilder: (context, index) => historyList.isEmpty
-                  ? const SizedBox()
-                  : historyList.length == 1
-                  ? HistoryComponant(
-                historyModel: historyList[0],
-              )
-                  : HistoryComponant(
-                historyModel: historyList[index],
-              ),
-              separatorBuilder: (context, index) => SizedBox(
-                height: 10 * SizeConfig.verticalBlock,
-              ),
-            ),
-          ),
+          historyList.isEmpty
+              ? const Center(child: CircularProgressIndicator.adaptive())
+              : Expanded(
+                  child: ListView.separated(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: historyList.isEmpty ? 1 : historyList.length,
+                    itemBuilder: (context, index) => historyList.isEmpty
+                        ? const SizedBox()
+                        : HistoryComponant(
+                            historyModel: historyList[index],
+                          ),
+                    separatorBuilder: (context, index) => SizedBox(
+                      height: 10 * SizeConfig.verticalBlock,
+                    ),
+                  ),
+                ),
         ],
       ),
     );
   }
 }
-
-

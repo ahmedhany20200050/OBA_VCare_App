@@ -15,7 +15,11 @@ class Api {
     }
     http.Response response = await http.get(Uri.parse(url), headers: headers);
     if (response.statusCode >= 200 || response.statusCode < 300) {
-      return jsonDecode(response.body);
+      if (!response.toString().contains('DOCTYP')) {
+        return jsonDecode(response.body);
+      } else {
+        return 0;
+      }
     } else {
       throw Exception(
           'There is a issue with the status code ${response.statusCode}');

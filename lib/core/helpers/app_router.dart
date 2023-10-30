@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/Features/OnBoarding/presentation/views/onboarding_pages.dart';
 import 'package:untitled/Features/doctor%20details(booking)/presentation/views/doctor_details.dart';
 import 'package:untitled/Features/filter_doctors/presentation/views/filter_doctors_screen.dart';
+import 'package:untitled/Features/home/data/models/major_model.dart';
 import 'package:untitled/Features/home/presentation/views/home_screen.dart';
 import 'package:untitled/Features/Splash/presentation/views/splash_screen.dart';
 import 'package:untitled/Features/login/presentation/views/login_screen.dart';
@@ -13,7 +14,7 @@ import 'package:untitled/Features/view_all/presentation/view_all_screen.dart';
 
 class AppRouter {
   static Route? generatedRoutes(RouteSettings settings) {
-    // final args = settings.arguments;
+    final args = settings.arguments;
     switch (settings.name) {
       case SplashScreen.id:
         return AnimatedTransition(
@@ -37,7 +38,7 @@ class AppRouter {
         );
       case DoctorDetails.id:
         return AnimatedTransition(
-          page: const DoctorDetails(),
+          page:  DoctorDetails(docID: args as String),
         );
       case SuccessStateScreen.id:
         return AnimatedTransition(
@@ -53,7 +54,7 @@ class AppRouter {
         );
       case ViewAllScreen.id:
         return AnimatedTransition(
-          page: const ViewAllScreen(),
+          page:  ViewAllScreen(doctors: args as List<Doctors>),
         );
       case FilterDoctorsScreen.id:
         return AnimatedTransition(

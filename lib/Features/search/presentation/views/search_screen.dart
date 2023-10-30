@@ -109,6 +109,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       child: SizedBox(
                         width: double.infinity,
                         child: ListView.builder(
+                          shrinkWrap: true,
                           physics: const ClampingScrollPhysics(),
                           itemCount: doctorsList.length,
                           itemBuilder: (context, index) {
@@ -146,7 +147,7 @@ class DoctorGetDoctorsItem extends StatelessWidget {
       child: Ink(
         child: Container(
           padding: const EdgeInsets.only(bottom: 10, left: 16, right: 16),
-          height: 51 * SizeConfig.verticalBlock,
+          height: 55 * SizeConfig.verticalBlock,
           child: Row(
             children: [
               ClipRRect(
