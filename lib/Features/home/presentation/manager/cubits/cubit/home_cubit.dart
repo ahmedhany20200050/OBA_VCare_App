@@ -41,9 +41,6 @@ class HomeCubit extends Cubit<HomeStates> {
       token: token,
     )
         .then((value) {
-      // if (value != 0) {
-
-      // }
       userModel = UserModel.fromJson(value['data'][0]);
     });
   }

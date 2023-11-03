@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/filter_doctors/filter_doctors_cubit.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/filter_doctors/filter_doctors_states.dart';
 import 'package:untitled/Features/home/presentation/views/widgets/doctor_component.dart';
+import 'package:untitled/core/app_colors.dart';
+import 'package:untitled/core/app_styles.dart';
 import 'package:untitled/core/utils/size_config.dart';
-import 'package:untitled/core/widgets/custom_app_bar.dart';
 
 class FilterDoctorsScreen extends StatelessWidget {
   const FilterDoctorsScreen({super.key});
@@ -12,7 +13,16 @@ class FilterDoctorsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const CustomAppBar(),
+        appBar: AppBar(
+          centerTitle: true,
+          foregroundColor: AppColors.color0xFFF3FAF9,
+          elevation: 0,
+          backgroundColor: AppColors.primaryColor,
+          title: Text(
+            'VCare',
+            style: AppStyles.color0xFFF3FAF9FontSize20FontWeightW500,
+          ),
+        ),
         body: BlocBuilder<FilterDoctorCubit, FilterDoctorStates>(
           builder: (context, state) {
             if (state is FilterDoctorSuccessState) {

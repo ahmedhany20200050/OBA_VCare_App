@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -30,9 +32,9 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
-  int _governmentId = -1;
-  int _cityId = -1;
-  int _specializationId = -1;
+  int _governmentId = 0;
+  int _cityId = 0;
+  int _specializationId = 0;
 
   @override
   void initState() {

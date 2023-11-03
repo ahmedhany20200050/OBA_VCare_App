@@ -14,7 +14,6 @@ import 'package:untitled/core/app_colors.dart';
 import 'package:untitled/core/utils/size_config.dart';
 import 'package:untitled/core/utils/snack_bar_viewer.dart';
 import 'package:untitled/core/widgets/custom_app_bar.dart';
-import '../../../../core/app_styles.dart';
 import '../manager/cubits/cubit/home_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,7 +25,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with SnackBarViewer {
-  int _currentIndex = 2;
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,10 +34,9 @@ class _HomeScreenState extends State<HomeScreen> with SnackBarViewer {
         builder: (_, __) => IndexedStack(
           index: _currentIndex,
           children: [
+            const HomeBody(),
             const AllDoctorsScreen(),
             const SearchScreen(),
-            const HomeBody(),
-            const HistoryBody(),
             UserProfile(
               userModel: BlocProvider.of<HomeCubit>(context).userModel,
               historyList: BlocProvider.of<HomeCubit>(context).historyList,
@@ -54,6 +52,11 @@ class _HomeScreenState extends State<HomeScreen> with SnackBarViewer {
           backgroundColor: AppColors.primaryColor,
           items: [
             SvgPicture.asset(
+              AppAssets.homeIcon,
+              width: 12.25 * SizeConfig.horizontalBlock,
+              height: 24 * SizeConfig.verticalBlock,
+            ),
+            SvgPicture.asset(
               AppAssets.hospitalIcon,
               width: 24 * SizeConfig.horizontalBlock,
               height: 24 * SizeConfig.verticalBlock,
@@ -63,16 +66,6 @@ class _HomeScreenState extends State<HomeScreen> with SnackBarViewer {
               width: 24 * SizeConfig.horizontalBlock,
               height: 24 * SizeConfig.verticalBlock,
               color: AppColors.color0xFF173F68,
-            ),
-            SvgPicture.asset(
-              AppAssets.homeIcon,
-              width: 12.25 * SizeConfig.horizontalBlock,
-              height: 24 * SizeConfig.verticalBlock,
-            ),
-            SvgPicture.asset(
-              AppAssets.clockIcon,
-              width: 24 * SizeConfig.horizontalBlock,
-              height: 24 * SizeConfig.verticalBlock,
             ),
             SvgPicture.asset(
               AppAssets.accountIcon,
@@ -87,57 +80,6 @@ class _HomeScreenState extends State<HomeScreen> with SnackBarViewer {
             }
           },
         ),
-      ),
-    );
-  }
-}
-
-class HistoryBody extends StatelessWidget {
-  const HistoryBody({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    var historyList = BlocProvider.of<HomeCubit>(context).historyList;
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'History',
-              style: AppStyles.textStyle24w400inter,
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: SizedBox(
-              width: 60 * SizeConfig.horizontalBlock,
-              child: const Divider(
-                thickness: 2,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20 * SizeConfig.verticalBlock,
-          ),
-          historyList.isEmpty
-              ? const Center(child: CircularProgressIndicator.adaptive())
-              : Expanded(
-                  child: ListView.separated(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: historyList.isEmpty ? 1 : historyList.length,
-                    itemBuilder: (context, index) => historyList.isEmpty
-                        ? const SizedBox()
-                        : HistoryComponant(
-                            historyModel: historyList[index],
-                          ),
-                    separatorBuilder: (context, index) => SizedBox(
-                      height: 10 * SizeConfig.verticalBlock,
-                    ),
-                  ),
-                ),
-        ],
       ),
     );
   }

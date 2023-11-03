@@ -67,12 +67,28 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                               Container(
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: NetworkImage(
-                                        BlocProvider.of<DoctorDetailsCubit>(
-                                                context)
-                                            .docmodel!
-                                            .photo!),
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(
+                                      BlocProvider.of<DoctorDetailsCubit>(
+                                                      context)
+                                                  .docmodel!
+                                                  .gender!
+                                                  .contains('fe') ||
+                                              BlocProvider.of<
+                                                          DoctorDetailsCubit>(
+                                                      context)
+                                                  .docmodel!
+                                                  .name!
+                                                  .startsWith('Ms.') ||
+                                              BlocProvider.of<
+                                                          DoctorDetailsCubit>(
+                                                      context)
+                                                  .docmodel!
+                                                  .name!
+                                                  .startsWith('Miss')
+                                          ? 'assets/images/doctor-woman.jpg'
+                                          : 'assets/images/doctor-man.jpg',
+                                    ),
                                   ),
                                   color: AppColors.primaryColor,
                                 ),

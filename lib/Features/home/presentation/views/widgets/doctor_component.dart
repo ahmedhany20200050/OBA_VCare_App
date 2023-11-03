@@ -27,10 +27,14 @@ class DoctorComponent extends StatelessWidget {
               height: 100 * SizeConfig.verticalBlock,
               decoration: ShapeDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(
-                    doctorModel.photo!,
+                  image: AssetImage(
+                    doctorModel.gender!.contains('fe') ||
+                            doctorModel.name!.startsWith('Ms.') ||
+                            doctorModel.name!.startsWith('Miss')
+                        ? 'assets/images/doctor-woman.jpg'
+                        : 'assets/images/doctor-man.jpg',
                   ),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
                 color: AppColors.color0xFF173F68,
                 shape: RoundedRectangleBorder(

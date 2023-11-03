@@ -25,7 +25,7 @@ class FirstOnBoardingScreen extends StatelessWidget {
             ),
             height: 50,
             width: 50,
-            child: Icon(
+            child:const Icon(
               Icons.arrow_circle_right_outlined,
               color: Colors.white,
             ),

@@ -41,7 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return BlocConsumer<RegisterCubit, RegisterCubitState>(
       listener: (context, state) {
         if (state is RegisterCubitSuccess) {
-          //todo: navigate
+          //todonavigate
           Navigator.of(context).pushReplacementNamed(HomeScreen.id);
           AnimatedSnackBar.material(
             'Register Success',
