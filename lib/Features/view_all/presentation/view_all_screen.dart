@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:untitled/Features/home/data/models/major_model.dart';
 import 'package:untitled/Features/home/presentation/views/widgets/doctor_component.dart';
 import 'package:untitled/core/app_colors.dart';
-import 'package:untitled/core/app_styles.dart';
 import 'package:untitled/core/utils/size_config.dart';
 
 class ViewAllScreen extends StatefulWidget {
@@ -19,14 +18,8 @@ class _ViewAllScreenState extends State<ViewAllScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          centerTitle: true,
-          foregroundColor: AppColors.color0xFFF3FAF9,
-          elevation: 0,
+          foregroundColor: AppColors.colorWhite,
           backgroundColor: AppColors.primaryColor,
-          title: Text(
-            'VCare',
-            style: AppStyles.color0xFFF3FAF9FontSize20FontWeightW500,
-          ),
         ),
         body: Padding(
           padding: EdgeInsets.only(

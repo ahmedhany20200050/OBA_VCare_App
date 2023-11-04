@@ -14,34 +14,53 @@ class FilterDoctorsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          centerTitle: true,
-          foregroundColor: AppColors.color0xFFF3FAF9,
-          elevation: 0,
+          foregroundColor: AppColors.colorWhite,
           backgroundColor: AppColors.primaryColor,
-          title: Text(
-            'VCare',
-            style: AppStyles.color0xFFF3FAF9FontSize20FontWeightW500,
-          ),
         ),
         body: BlocBuilder<FilterDoctorCubit, FilterDoctorStates>(
           builder: (context, state) {
             if (state is FilterDoctorSuccessState) {
               return Padding(
                   padding: EdgeInsets.only(
-                      top: 16 * SizeConfig.verticalBlock,
                       left: 20 * SizeConfig.horizontalBlock,
                       right: 20 * SizeConfig.horizontalBlock),
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 150 * SizeConfig.horizontalBlock,
-                        mainAxisExtent: 210 * SizeConfig.verticalBlock,
-                        mainAxisSpacing: 10 * SizeConfig.verticalBlock,
-                        crossAxisSpacing: 10 * SizeConfig.horizontalBlock),
-                    itemBuilder: (_, index) => DoctorComponent(
-                      doctorModel: state.doctors[index],
-                    ),
-                    itemCount: state.doctors.length,
-                  ));
+                  child: state.doctors.isEmpty
+                      ? Center(
+                          child: Text(
+                          'No doctors with that specialization in that city.',
+                          textAlign: TextAlign.center,
+                          style: AppStyles
+                              .color0xFF020D18FontSize12FontWeightW700
+                              .copyWith(
+                            color: AppColors.primaryColor,
+                            fontSize: 18,
+                          ),
+                        ))
+                      : Column(
+                          children: [
+                            SizedBox(height: 10 * SizeConfig.verticalBlock),
+                            Expanded(
+                              child: GridView.builder(
+                                shrinkWrap: true,
+                                gridDelegate:
+                                    SliverGridDelegateWithMaxCrossAxisExtent(
+                                        maxCrossAxisExtent:
+                                            150 * SizeConfig.horizontalBlock,
+                                        mainAxisExtent:
+                                            260 * SizeConfig.verticalBlock,
+                                        mainAxisSpacing:
+                                            10 * SizeConfig.verticalBlock,
+                                        crossAxisSpacing:
+                                            10 * SizeConfig.horizontalBlock),
+                                itemBuilder: (_, index) => DoctorComponent(
+                                  doctorModel: state.doctors[index],
+                                ),
+                                itemCount: state.doctors.length,
+                              ),
+                            ),
+                            SizedBox(height: 10 * SizeConfig.verticalBlock),
+                          ],
+                        ));
             } else if (state is FilterDoctorErrorState) {
               return Center(
                 child: Text(state.errorMessage),

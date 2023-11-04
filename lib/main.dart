@@ -59,6 +59,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          datePickerTheme: const DatePickerThemeData(
+            headerForegroundColor: AppColors.primaryColor,
+            todayBackgroundColor: MaterialStatePropertyAll(
+              AppColors.primaryColor,
+            ),
+          ),
           primaryColor: AppColors.primaryColor,
           useMaterial3: true,
         ),

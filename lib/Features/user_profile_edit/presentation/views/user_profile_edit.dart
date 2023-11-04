@@ -30,14 +30,8 @@ class _UserProfileEditState extends State<UserProfileEdit> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        foregroundColor: AppColors.color0xFFF3FAF9,
-        elevation: 0,
+        foregroundColor: AppColors.colorWhite,
         backgroundColor: AppColors.primaryColor,
-        title: Text(
-          'VCare',
-          style: AppStyles.color0xFFF3FAF9FontSize20FontWeightW500,
-        ),
       ),
       body: BlocListener<UpdateUserCubit, UpdateUserStates>(
         listener: (context, state) {

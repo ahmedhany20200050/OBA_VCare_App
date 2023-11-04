@@ -14,8 +14,20 @@ class EndPoints {
   static String getAllGovernmentsEndPoint = "/governrate/index";
   static String getAllSpecializationsEndPoint = "/specialization/index";
   static String getAllCitiesEndPoint = "/city/index";
-  static String filterDoctorsEndpoint(
-          {required int cityId, required int specializationId,required governorateId}) =>
-      "/doctor/doctor-filter?city=$cityId&specialization=$specializationId&governrate=$governorateId";
+  static String filterDoctorsEndpoint({
+    int? cityId,
+    int? specializationId,
+  }) {
+    if (cityId != null && specializationId != null) {
+      return "/doctor/doctor-filter?city=$cityId&specialization=$specializationId";
+    } else if (cityId == null && specializationId == null) {
+      return "/doctor/doctor-filter";
+    } else if (cityId != null && specializationId == null) {
+      return "/doctor/doctor-filter?city=$cityId";
+    } else {
+      return "/doctor/doctor-filter?specialization=$specializationId";
+    }
+  }
+
   static String updateProfileEndpoint = "/user/update";
 }

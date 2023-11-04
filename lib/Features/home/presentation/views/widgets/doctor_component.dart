@@ -109,11 +109,12 @@ class DoctorComponent extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          "Book",
+                          "More Details",
                           style: AppStyles
                               .color0xFF020D18FontSize12FontWeightW400
                               .copyWith(
                             color: AppColors.colorWhite,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),

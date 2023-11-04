@@ -30,15 +30,9 @@ class _HistoryDetailsState extends State<HistoryDetails> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            centerTitle: true,
-            foregroundColor: AppColors.color0xFFF3FAF9,
-            elevation: 0,
-            backgroundColor: AppColors.primaryColor,
-            title: Text(
-              'VCare',
-              style: AppStyles.color0xFFF3FAF9FontSize20FontWeightW500,
-            ),
-          ),
+          foregroundColor: AppColors.colorWhite,
+          backgroundColor: AppColors.primaryColor,
+        ),
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16.0),

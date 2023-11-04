@@ -58,6 +58,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                 )
               : SafeArea(
                   child: SingleChildScrollView(
+                    physics: const ClampingScrollPhysics(),
                     child: Form(
                       key: key,
                       child: Column(
@@ -127,7 +128,6 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                           Padding(
                             padding: EdgeInsets.symmetric(
                               horizontal: 16 * SizeConfig.horizontalBlock,
-                              vertical: 10 * SizeConfig.verticalBlock,
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,11 +138,12 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                                       .name!,
                                   style:
                                       AppStyles.textStyle34w400roboto.copyWith(
-                                    color: Colors.black.withOpacity(0.7),
+                                    fontSize: 26,
+                                    color: AppColors.primaryColor,
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 17 * SizeConfig.verticalBlock,
+                                  height: 10 * SizeConfig.verticalBlock,
                                 ),
                                 Text(
                                   BlocProvider.of<DoctorDetailsCubit>(context)
@@ -155,20 +156,20 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 11 * SizeConfig.verticalBlock,
+                                  height: 10 * SizeConfig.verticalBlock,
                                 ),
-                                const Divider(
-                                  thickness: 2,
-                                ),
-                                SizedBox(
-                                  height: 12 * SizeConfig.verticalBlock,
-                                ),
+                                // const Divider(
+                                //   thickness: 2,
+                                // ),
+                                // SizedBox(
+                                //   height: 12 * SizeConfig.verticalBlock,
+                                // ),
                                 Text(
                                   'Select date',
                                   style:
                                       AppStyles.textStyle34w400roboto.copyWith(
-                                    fontSize: 16 * SizeConfig.textRatio,
-                                    color: Colors.black.withOpacity(0.6),
+                                    fontSize: 14 * SizeConfig.textRatio,
+                                    color: AppColors.primaryColor,
                                   ),
                                 ),
                                 TextFormField(
@@ -199,24 +200,24 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                                     hintText: 'yy/mm/dd',
                                     hintStyle: AppStyles.textStyle34w400roboto
                                         .copyWith(
-                                      fontSize: 21 * SizeConfig.textRatio,
+                                      fontSize: 20 * SizeConfig.textRatio,
                                       color: Colors.black.withOpacity(0.5),
                                     ),
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 19 * SizeConfig.verticalBlock,
+                                  height: 15 * SizeConfig.verticalBlock,
                                 ),
                                 Text(
                                   'Select time',
                                   style:
                                       AppStyles.textStyle34w400roboto.copyWith(
-                                    fontSize: 16 * SizeConfig.textRatio,
-                                    color: Colors.black.withOpacity(0.6),
+                                    fontSize: 14 * SizeConfig.textRatio,
+                                    color: AppColors.primaryColor,
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 8 * SizeConfig.verticalBlock,
+                                  height: 10 * SizeConfig.verticalBlock,
                                 ),
                                 SizedBox(
                                   height: 30 * SizeConfig.verticalBlock,

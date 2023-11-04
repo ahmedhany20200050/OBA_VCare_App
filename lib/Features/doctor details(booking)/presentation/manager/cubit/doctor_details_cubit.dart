@@ -67,10 +67,7 @@ class DoctorDetailsCubit extends Cubit<DoctorDetailsState> {
         availTimes.add('${time!.hour.toString()}:${time!.minute.toString()}');
       }
 
-      time = time!.add(const Duration(minutes: 30));
-    }
-    if (end.minute == 0) {
-      availTimes.removeLast();
+      time = time!.add(const Duration(minutes: 60));
     }
   }
 }

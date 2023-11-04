@@ -160,13 +160,9 @@ class UserProfile extends StatelessWidget {
                               ),
                             ),
                           )
-                        : historyList.length == 1
-                            ? HistoryComponant(
-                                historyModel: historyList[0],
-                              )
-                            : HistoryComponant(
-                                historyModel: historyList[index],
-                              ),
+                        : HistoryComponant(
+                            historyModel: historyList[index],
+                          ),
                     separatorBuilder: (context, index) => SizedBox(
                       height: 10 * SizeConfig.verticalBlock,
                     ),
@@ -207,7 +203,8 @@ class HistoryComponant extends StatelessWidget {
               children: [
                 Text(historyModel.appointmentTime!),
                 const Spacer(),
-                Text(historyModel.status!),
+                Text(historyModel.status!,
+                    style: const TextStyle(color: AppColors.primaryColor)),
               ],
             ),
           ),

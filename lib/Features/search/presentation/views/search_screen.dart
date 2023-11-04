@@ -155,7 +155,9 @@ class DoctorGetDoctorsItem extends StatelessWidget {
                     color: AppColors.primaryColor,
                   ),
                   child: Image.asset(
-                    doctor.gender!.contains('f')
+                    doctor.gender!.contains('f') ||
+                            doctor.name!.contains('Miss') ||
+                            doctor.name!.startsWith('Ms.')
                         ? 'assets/images/doctor-woman.jpg'
                         : 'assets/images/doctor-man.jpg',
                     fit: BoxFit.fill,
