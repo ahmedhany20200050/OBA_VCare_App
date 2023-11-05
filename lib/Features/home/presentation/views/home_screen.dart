@@ -3,6 +3,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:untitled/Features/all_doctors_screen/presentation/views/all_doctors_screen.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/bottom_navigation_bar_cubit.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/bottom_navigation_bar_states.dart';
@@ -55,22 +56,21 @@ class _HomeScreenState extends State<HomeScreen> with SnackBarViewer {
               AppAssets.homeIcon,
               width: 12.25 * SizeConfig.horizontalBlock,
               height: 24 * SizeConfig.verticalBlock,
+              color: AppColors.primaryColor,
             ),
-            SvgPicture.asset(
-              AppAssets.hospitalIcon,
-              width: 24 * SizeConfig.horizontalBlock,
-              height: 24 * SizeConfig.verticalBlock,
-            ),
+            const Icon(FontAwesomeIcons.stethoscope,
+                color: AppColors.primaryColor),
             SvgPicture.asset(
               AppAssets.searchIcon,
               width: 24 * SizeConfig.horizontalBlock,
               height: 24 * SizeConfig.verticalBlock,
-              color: AppColors.color0xFF173F68,
+              color: AppColors.primaryColor,
             ),
             SvgPicture.asset(
               AppAssets.accountIcon,
               width: 24 * SizeConfig.horizontalBlock,
               height: 24 * SizeConfig.verticalBlock,
+              color: AppColors.primaryColor,
             ),
           ],
           onTap: (index) {

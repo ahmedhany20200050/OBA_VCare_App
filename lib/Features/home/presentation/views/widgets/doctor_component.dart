@@ -69,7 +69,7 @@ class DoctorComponent extends StatelessWidget {
                       )),
                   Row(
                     children: [
-                      SizedBox(width: 30 * SizeConfig.horizontalBlock),
+                      SizedBox(width: 25 * SizeConfig.horizontalBlock),
                       Text(doctorModel.specialization!.name!,
                           style: AppStyles
                               .color0xB2030E19FontSize12FontWeightW400
@@ -85,7 +85,7 @@ class DoctorComponent extends StatelessWidget {
                       )),
                   Row(
                     children: [
-                      SizedBox(width: 30 * SizeConfig.horizontalBlock),
+                      SizedBox(width: 25 * SizeConfig.horizontalBlock),
                       Text(
                         doctorModel.degree!,
                         style: AppStyles.color0xB2030E19FontSize12FontWeightW400

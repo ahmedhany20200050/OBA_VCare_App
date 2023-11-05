@@ -65,26 +65,29 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Container(
               padding: EdgeInsets.symmetric(
                   horizontal: 25 * SizeConfig.horizontalBlock,
-                  vertical: 55 * SizeConfig.verticalBlock),
+                  vertical: 20 * SizeConfig.verticalBlock),
               child: Form(
                 key: formkey,
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        "Welcome Back!",
-                        textAlign: TextAlign.center,
-                        style: AppStyles.titleStyle,
-                      ),
-                      const SizedBox(
-                        height: 10,
+                      Container(
+                        height: 150,
+                        width: 150,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/gif.gif'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                       Row(
                         children: [
                           Expanded(
                             child: Text(
-                              "Login to an account and start booking now",
+                              "Login to an account and start booking doctors now",
                               style: AppStyles.descriptionStyle,
                               textAlign: TextAlign.center,
                             ),
@@ -98,6 +101,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.emailAddress,
                         controller: email,
                         decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.email,
+                              color: AppColors.primaryColor),
                           contentPadding:
                               const EdgeInsets.symmetric(horizontal: 16),
                           hintText: "Email",
@@ -124,7 +129,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextFormField(
                         controller: password,
+                        obscureText: loginCubit.obscure,
                         decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.lock,
+                              color: AppColors.primaryColor),
+                          suffixIcon: IconButton(
+                              onPressed: () => loginCubit.changeVisability(),
+                              icon: loginCubit.visabl),
                           contentPadding:
                               const EdgeInsets.symmetric(horizontal: 16),
                           hintText: "Password",

@@ -74,7 +74,7 @@ class _UserProfileEditState extends State<UserProfileEdit> {
                     style: AppStyles.textStyle34w400roboto,
                   ),
                   SizedBox(
-                    height: 20 * SizeConfig.verticalBlock,
+                    height: 10 * SizeConfig.verticalBlock,
                   ),
                   Text(
                     'Update your info and become a new you!',

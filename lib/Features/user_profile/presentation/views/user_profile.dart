@@ -28,101 +28,66 @@ class UserProfile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircleAvatar(
-                  radius: 80,
-                  child: userModel != null
-                      ? Image.asset(userModel!.gender!.contains('f')
-                          ? 'assets/images/woman.png'
-                          : 'assets/images/man.png')
-                      : null,
-                ),
-                SizedBox(
-                  height: 10 * SizeConfig.verticalBlock,
-                ),
-                Text(
-                  userModel!.name!,
-                  style: AppStyles.textStyle24w400inter,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                SizedBox(
-                  height: 20 * SizeConfig.verticalBlock,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 10 * SizeConfig.horizontalBlock,
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            Icons.email_outlined,
-                            size: 40,
-                            color: AppColors.primaryColor,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CircleAvatar(
+                      radius: 80,
+                      child: userModel != null
+                          ? Image.asset(userModel!.gender!.contains('f')
+                              ? 'assets/images/woman.png'
+                              : 'assets/images/man.png')
+                          : null,
+                    ),
+                    SizedBox(
+                      height: 10 * SizeConfig.verticalBlock,
+                    ),
+                    Column(
+                      children: [
+                        SizedBox(
+                          width: 220,
+                          child: Text(
+                            userModel!.name!,
+                            style: AppStyles.textStyle24w400inter
+                                .copyWith(fontSize: 20),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
                           ),
-                          SizedBox(
-                            width: 20 * SizeConfig.horizontalBlock,
-                          ),
-                          SizedBox(
-                            width: 280,
-                            child: Text(
-                              userModel!.email!,
-                              style: AppStyles.textStyle24w400inter.copyWith(
-                                fontSize: 20,
-                                color: AppColors.colorBlack,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
+                        ),
+                        SizedBox(
+                          height: 5 * SizeConfig.verticalBlock,
+                        ),
+                        SizedBox(
+                          width: 220,
+                          child: Text(
+                            userModel!.email!,
+                            style: AppStyles.textStyle24w400inter.copyWith(
+                              fontSize: 16,
+                              color: AppColors.colorBlack.withOpacity(0.5),
                             ),
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10 * SizeConfig.verticalBlock,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            Icons.phone_outlined,
-                            size: 40,
-                            color: AppColors.primaryColor,
-                          ),
-                          SizedBox(
-                            width: 20 * SizeConfig.horizontalBlock,
-                          ),
-                          SizedBox(
-                            width: 280,
-                            child: Text(
-                              userModel!.phone!,
-                              style: AppStyles.textStyle24w400inter.copyWith(
-                                fontSize: 20,
-                                color: AppColors.colorBlack,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                        SizedBox(
+                          height: 20 * SizeConfig.verticalBlock,
+                        ),
+                        CustomButton(
+                          mustBeMaxSize: false,
+                          buttonText: 'Edit account',
+                          onTap: () => Navigator.of(context).pushNamed(
+                              UserProfileEdit.id,
+                              arguments: userModel!.id.toString()),
+                          verticalPadding: 25,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
                 SizedBox(
-                  height: 20 * SizeConfig.verticalBlock,
-                ),
-                CustomButton(
-                  mustBeMaxSize: false,
-                  buttonText: 'Edit account details',
-                  onTap: () => Navigator.of(context).pushNamed(
-                      UserProfileEdit.id,
-                      arguments: userModel!.id.toString()),
-                  verticalPadding: 25,
-                ),
-                SizedBox(
-                  height: 20 * SizeConfig.verticalBlock,
+                  height: 25 * SizeConfig.verticalBlock,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,

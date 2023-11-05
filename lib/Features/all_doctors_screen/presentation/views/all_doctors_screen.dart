@@ -76,12 +76,22 @@ class _AllDoctorsScreenState extends State<AllDoctorsScreen> {
                     ? const Center(
                         child: Text("No Doctors Available"),
                       )
-                    : SingleChildScrollView(
-                        physics: const ClampingScrollPhysics(),
-                        child: Column(
-                          children: [
-                            SizedBox(height: 10 * SizeConfig.verticalBlock),
-                            CustomButton(
+                    : Stack(
+                        alignment: Alignment.topCenter,
+                        children: [
+                          GridView.count(
+                            padding: const EdgeInsets.all(16),
+                            crossAxisSpacing: 8,
+                            mainAxisSpacing: 12,
+                            childAspectRatio: 0.54,
+                            crossAxisCount: 2,
+                            physics: const ClampingScrollPhysics(),
+                            shrinkWrap: true,
+                            children: buildDoctorsItems(cubit.doctors),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: CustomButton(
                               buttonText: "Filter",
                               mustBeMaxSize: false,
                               verticalPadding: 12 * SizeConfig.verticalBlock,
@@ -444,18 +454,8 @@ class _AllDoctorsScreenState extends State<AllDoctorsScreen> {
                               },
                               iconAsset: AppAssets.filterIcon,
                             ),
-                            GridView.count(
-                              padding: const EdgeInsets.all(16),
-                              crossAxisSpacing: 8,
-                              mainAxisSpacing: 12,
-                              childAspectRatio: 0.54,
-                              crossAxisCount: 2,
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              children: buildDoctorsItems(cubit.doctors),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       )
                 : state is GetDoctorsCubitFailure
                     ? Center(child: Text(state.err))

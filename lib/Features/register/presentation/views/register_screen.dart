@@ -74,26 +74,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Container(
                         padding: EdgeInsets.symmetric(
                             horizontal: 24 * SizeConfig.horizontalBlock,
-                            vertical: 55 * SizeConfig.verticalBlock),
+                            vertical: 20 * SizeConfig.verticalBlock),
                         child: Form(
                           key: formkey,
                           child: SingleChildScrollView(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                Text(
-                                  "Let’s get started!",
-                                  textAlign: TextAlign.center,
-                                  style: AppStyles.titleStyle,
-                                ),
-                                const SizedBox(
-                                  height: 20,
+                                Container(
+                                  height: 150,
+                                  width: 150,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image:
+                                          AssetImage('assets/images/gif.gif'),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
                                 Row(
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        "create an account and start booking now",
+                                        "create an account and start booking doctors now",
                                         style: AppStyles.descriptionStyle,
                                         textAlign: TextAlign.center,
                                       ),
@@ -111,6 +114,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     }
                                   },
                                   decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.person,
+                                        color: AppColors.primaryColor),
                                     contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 16),
                                     hintText: "Name",
@@ -144,6 +149,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     }
                                   },
                                   decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.email,
+                                        color: AppColors.primaryColor),
                                     contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 16),
                                     hintText: "Email",
@@ -178,6 +185,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     }
                                   },
                                   decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.phone,
+                                        color: AppColors.primaryColor),
                                     contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 16),
                                     hintText: "Phone",
@@ -200,9 +209,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         style: AppStyles.textFieldErrorStyle,
                                       )
                                     : Container(),
-                                const SizedBox(
-                                  height: 24,
-                                ),
+                                const SizedBox(height: 24),
                                 TextFormField(
                                   controller: password,
                                   validator: (value) {
@@ -211,6 +218,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     }
                                   },
                                   decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.lock,
+                                        color: AppColors.primaryColor),
+                                    suffixIcon: const Icon(Icons.visibility_off,
+                                        color: AppColors.primaryColor),
                                     contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 16),
                                     hintText: "Password",
@@ -227,9 +238,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 24 * SizeConfig.verticalBlock,
-                                ),
+                                const SizedBox(height: 24),
                                 TextFormField(
                                   controller: confirmPassword,
                                   validator: (value) {
@@ -238,6 +247,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     }
                                   },
                                   decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.lock,
+                                        color: AppColors.primaryColor),
+                                    suffixIcon: const Icon(Icons.visibility_off,
+                                        color: AppColors.primaryColor),
                                     contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 16),
                                     hintText: "Confirm Password",

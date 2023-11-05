@@ -1,6 +1,7 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:untitled/Features/doctor%20details(booking)/presentation/manager/cubit/doctor_details_cubit.dart';
 import 'package:untitled/Features/doctor%20details(booking)/presentation/manager/cubit/doctor_details_state.dart';
 import 'package:untitled/Features/home/presentation/manager/cubits/cubit/home_cubit.dart';
@@ -48,6 +49,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
         }
       },
       builder: (context, state) {
+        var doctorM = BlocProvider.of<DoctorDetailsCubit>(context).docmodel;
         return Scaffold(
           body: BlocProvider.of<DoctorDetailsCubit>(context).docmodel == null ||
                   BlocProvider.of<DoctorDetailsCubit>(context)
@@ -132,43 +134,137 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  BlocProvider.of<DoctorDetailsCubit>(context)
-                                      .docmodel!
-                                      .name!,
-                                  style:
-                                      AppStyles.textStyle34w400roboto.copyWith(
-                                    fontSize: 26,
-                                    color: AppColors.primaryColor,
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    BlocProvider.of<DoctorDetailsCubit>(context)
+                                        .docmodel!
+                                        .name!,
+                                    textAlign: TextAlign.center,
+                                    style: AppStyles.textStyle34w400roboto
+                                        .copyWith(
+                                      fontSize: 28,
+                                      color: AppColors.primaryColor,
+                                    ),
                                   ),
                                 ),
                                 SizedBox(
                                   height: 10 * SizeConfig.verticalBlock,
                                 ),
-                                Text(
-                                  BlocProvider.of<DoctorDetailsCubit>(context)
-                                      .docmodel!
-                                      .description!,
-                                  style:
-                                      AppStyles.textStyle34w400roboto.copyWith(
-                                    fontSize: 16 * SizeConfig.textRatio,
-                                    color: Colors.black.withOpacity(0.6),
-                                  ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.email,
+                                      color: AppColors.primaryColor,
+                                      size: 25,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    SizedBox(
+                                      width: 280 * SizeConfig.horizontalBlock,
+                                      child: Text(
+                                        doctorM!.email!,
+                                        style: AppStyles.textStyle24w400inter
+                                            .copyWith(fontSize: 16),
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 5 * SizeConfig.verticalBlock,
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.phone,
+                                      color: AppColors.primaryColor,
+                                      size: 25,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Text(
+                                      doctorM.phone!,
+                                      style: AppStyles.textStyle24w400inter
+                                          .copyWith(fontSize: 16),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 5 * SizeConfig.verticalBlock,
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      FontAwesomeIcons.stethoscope,
+                                      color: AppColors.primaryColor,
+                                      size: 25,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    SizedBox(
+                                      width: 160,
+                                      child: Text(
+                                        doctorM.specialization!.name!,
+                                        style: AppStyles.textStyle24w400inter
+                                            .copyWith(fontSize: 16),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 20),
+                                    const Icon(
+                                      FontAwesomeIcons.graduationCap,
+                                      color: AppColors.primaryColor,
+                                      size: 25,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Text(
+                                      doctorM.degree!,
+                                      style: AppStyles.textStyle24w400inter
+                                          .copyWith(fontSize: 16),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 5 * SizeConfig.verticalBlock,
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.location_on,
+                                      color: AppColors.primaryColor,
+                                      size: 25,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    SizedBox(
+                                      width: 160,
+                                      child: Text(
+                                        doctorM.city!.name!,
+                                        style: AppStyles.textStyle24w400inter
+                                            .copyWith(fontSize: 16),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 20),
+                                    const Icon(
+                                      Icons.payments_rounded,
+                                      color: AppColors.primaryColor,
+                                      size: 25,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Text(
+                                      doctorM.appointPrice!.toString(),
+                                      style: AppStyles.textStyle24w400inter
+                                          .copyWith(fontSize: 16),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(
                                   height: 10 * SizeConfig.verticalBlock,
                                 ),
-                                // const Divider(
-                                //   thickness: 2,
-                                // ),
-                                // SizedBox(
-                                //   height: 12 * SizeConfig.verticalBlock,
-                                // ),
                                 Text(
                                   'Select date',
                                   style:
                                       AppStyles.textStyle34w400roboto.copyWith(
-                                    fontSize: 14 * SizeConfig.textRatio,
+                                    fontSize: 16 * SizeConfig.textRatio,
                                     color: AppColors.primaryColor,
                                   ),
                                 ),
@@ -212,7 +308,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                                   'Select time',
                                   style:
                                       AppStyles.textStyle34w400roboto.copyWith(
-                                    fontSize: 14 * SizeConfig.textRatio,
+                                    fontSize: 16 * SizeConfig.textRatio,
                                     color: AppColors.primaryColor,
                                   ),
                                 ),
@@ -299,7 +395,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                                     ],
                                   ),
                                 SizedBox(
-                                  height: 33 * SizeConfig.verticalBlock,
+                                  height: 25 * SizeConfig.verticalBlock,
                                 ),
                                 SizedBox(
                                   width: double.infinity,

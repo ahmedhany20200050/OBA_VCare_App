@@ -1,7 +1,9 @@
 // ignore_for_file: missing_required_param, prefer_typing_uninitialized_variables
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:untitled/core/app_colors.dart';
 import '../../../../../core/utils/endpoints.dart';
 import 'login_cubit_state.dart';
 import 'package:http/http.dart' as http;
@@ -41,6 +43,29 @@ class LoginCubit extends Cubit<LoginCubitState> {
         'error': e.toString(),
       }));
     }
+  }
+
+Icon visabl = const Icon(
+    Icons.visibility,
+    color: AppColors.primaryColor,
+  );
+  bool obscure = true;
+
+  changeVisability() {
+    if (obscure) {
+      obscure = !obscure;
+      visabl = const Icon(
+        Icons.visibility_off,
+        color: AppColors.primaryColor,
+      );
+    } else {
+      obscure = !obscure;
+      visabl = const Icon(
+        Icons.visibility,
+        color: AppColors.primaryColor,
+      );
+    }
+    emit(ChangeVisability());
   }
 
   // Future goDirectlyToNextScreen() async {
