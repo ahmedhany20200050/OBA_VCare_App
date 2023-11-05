@@ -43,6 +43,7 @@ class HomeCubit extends Cubit<HomeStates> {
         .then((value) {
       userModel = UserModel.fromJson(value['data'][0]);
     });
+    emit(HomeProfile());
   }
 
   getHistory() async {
@@ -59,5 +60,6 @@ class HomeCubit extends Cubit<HomeStates> {
         historyList.add(HistoryModel.fromJson(element));
       }
     });
+    emit(HomeHistory());
   }
 }

@@ -77,7 +77,7 @@ class _AllDoctorsScreenState extends State<AllDoctorsScreen> {
                         child: Text("No Doctors Available"),
                       )
                     : Stack(
-                        alignment: Alignment.topCenter,
+                        alignment: Alignment.topLeft,
                         children: [
                           GridView.count(
                             padding: const EdgeInsets.all(16),
@@ -94,7 +94,7 @@ class _AllDoctorsScreenState extends State<AllDoctorsScreen> {
                             child: CustomButton(
                               buttonText: "Filter",
                               mustBeMaxSize: false,
-                              verticalPadding: 12 * SizeConfig.verticalBlock,
+                              verticalPadding: 10 * SizeConfig.verticalBlock,
                               onTap: () {
                                 showModalBottomSheet(
                                     backgroundColor: AppColors.color0xFFF3FAF9,

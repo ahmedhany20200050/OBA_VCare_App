@@ -9,18 +9,19 @@ class TextAndIconComponent extends StatelessWidget {
   final String text;
   final TextStyle textStyle;
   final String? iconAsset;
-  const TextAndIconComponent(
-      {super.key,
-      this.iconColor,
-      required this.text,
-      this.iconAsset,
-      required this.textStyle, this.mustBeMaxSize = true,
-      });
+  const TextAndIconComponent({
+    super.key,
+    this.iconColor,
+    required this.text,
+    this.iconAsset,
+    required this.textStyle,
+    this.mustBeMaxSize = true,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisSize: mustBeMaxSize?MainAxisSize.max:MainAxisSize.min,
+      mainAxisSize: mustBeMaxSize ? MainAxisSize.max : MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         if (iconAsset != null) ...[

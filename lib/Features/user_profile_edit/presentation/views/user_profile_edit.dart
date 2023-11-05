@@ -36,12 +36,12 @@ class _UserProfileEditState extends State<UserProfileEdit> {
       body: BlocListener<UpdateUserCubit, UpdateUserStates>(
         listener: (context, state) {
           if (state is UpdateUserSuccessState) {
-            BlocProvider.of<HomeCubit>(context).userProfile();
             AnimatedSnackBar.material(
               'User updated Successfully',
               type: AnimatedSnackBarType.success,
               duration: const Duration(seconds: 2),
             ).show(context);
+            BlocProvider.of<HomeCubit>(context).userProfile();
             Navigator.pop(context);
           } else if (state is UpdateUserErrorState) {
             AnimatedSnackBar.material(
@@ -49,11 +49,6 @@ class _UserProfileEditState extends State<UserProfileEdit> {
               type: AnimatedSnackBarType.error,
               duration: const Duration(seconds: 4),
             ).show(context);
-          } else {
-            showDialog(
-                context: context,
-                builder: (_) =>
-                    const Center(child: CircularProgressIndicator.adaptive()));
           }
         },
         child: Padding(
@@ -74,7 +69,7 @@ class _UserProfileEditState extends State<UserProfileEdit> {
                     style: AppStyles.textStyle34w400roboto,
                   ),
                   SizedBox(
-                    height: 10 * SizeConfig.verticalBlock,
+                    height: 5 * SizeConfig.verticalBlock,
                   ),
                   Text(
                     'Update your info and become a new you!',
@@ -192,7 +187,7 @@ class _UserProfileEditState extends State<UserProfileEdit> {
                               phone: phone.text,
                               password: password.text,
                               passwordConfirm: passwordConfirm.text,
-                              gender: isMale ? "0" : "1");
+                              gender: isMale ? '0' : '1');
                         }
                       },
                       child: Text(

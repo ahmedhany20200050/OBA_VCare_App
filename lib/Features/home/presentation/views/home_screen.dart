@@ -25,10 +25,21 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with SnackBarViewer {
+class _HomeScreenState extends State<HomeScreen>
+    with SnackBarViewer, AutomaticKeepAliveClientMixin<HomeScreen> {
   int _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<HomeCubit>(context).allMajors();
+    BlocProvider.of<HomeCubit>(context).userProfile();
+    BlocProvider.of<HomeCubit>(context).getHistory();
+  }
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: const CustomAppBar(),
       body: BlocBuilder<BottomNavigationBarCubit, BottomNavigationBarStates>(
@@ -83,4 +94,7 @@ class _HomeScreenState extends State<HomeScreen> with SnackBarViewer {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

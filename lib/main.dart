@@ -37,12 +37,7 @@ class MyApp extends StatelessWidget {
     SizeConfig.init(context);
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => HomeCubit()
-            ..allMajors()
-            ..userProfile()
-            ..getHistory(),
-        ),
+        BlocProvider(create: (context) => HomeCubit()),
         BlocProvider(create: (context) => RegisterCubit()),
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => DoctorDetailsCubit()),
