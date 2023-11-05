@@ -109,6 +109,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       child: SizedBox(
                         width: double.infinity,
                         child: ListView.builder(
+                          shrinkWrap: true,
                           physics: const ClampingScrollPhysics(),
                           itemCount: doctorsList.length,
                           itemBuilder: (context, index) {
@@ -135,18 +136,16 @@ class DoctorGetDoctorsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //todo: push doctor details with doctor id
         Navigator.pushNamed(
           context,
           DoctorDetails.id,
           arguments: doctor.id.toString(),
         );
-        // Navigator.push(context, MaterialPageRoute(builder: (context) => DoctorDetails(),));
       },
       child: Ink(
         child: Container(
           padding: const EdgeInsets.only(bottom: 10, left: 16, right: 16),
-          height: 51 * SizeConfig.verticalBlock,
+          height: 55 * SizeConfig.verticalBlock,
           child: Row(
             children: [
               ClipRRect(
@@ -155,9 +154,12 @@ class DoctorGetDoctorsItem extends StatelessWidget {
                   decoration: const BoxDecoration(
                     color: AppColors.primaryColor,
                   ),
-                  child: Image.network(
-                    doctor.photo ??
-                        "https://via.placeholder.com/640x480.png/0099cc?text=doctors+ab",
+                  child: Image.asset(
+                    doctor.gender!.contains('f') ||
+                            doctor.name!.contains('Miss') ||
+                            doctor.name!.startsWith('Ms.')
+                        ? 'assets/images/doctor-woman.jpg'
+                        : 'assets/images/doctor-man.jpg',
                     fit: BoxFit.fill,
                     width: 50 * SizeConfig.verticalBlock,
                     height: 50 * SizeConfig.verticalBlock,

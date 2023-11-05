@@ -15,7 +15,8 @@ class CustomButton extends StatelessWidget {
       required this.buttonText,
       required this.onTap,
       this.iconAsset,
-      required this.verticalPadding, this.mustBeMaxSize = true});
+      required this.verticalPadding,
+      this.mustBeMaxSize = true});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class CustomButton extends StatelessWidget {
               horizontal: 16 * SizeConfig.horizontalBlock),
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
-            color: AppColors.color0xFF173F68,
+            color: AppColors.primaryColor,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
             shadows: const [

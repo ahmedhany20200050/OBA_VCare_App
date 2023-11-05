@@ -14,7 +14,7 @@ class SecondOnBoardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: InkWell(
-        onTap: (){
+        onTap: () {
           Navigator.of(context).pushNamed(LoginScreen.id);
         },
         child: Ink(
@@ -25,7 +25,7 @@ class SecondOnBoardingScreen extends StatelessWidget {
             ),
             height: 50,
             width: 50,
-            child: Icon(
+            child: const Icon(
               Icons.arrow_circle_right_outlined,
               color: Colors.white,
             ),
@@ -37,8 +37,13 @@ class SecondOnBoardingScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-                padding:const EdgeInsets.all(20),child: Image.asset("assets/images/secondOnBoardingScreen.jpg")),
-            Text("The Best Doctors",style: AppStyles.homeTitleStyle.copyWith(fontSize: 32*SizeConfig.textRatio),),
+                padding: const EdgeInsets.all(20),
+                child: Image.asset("assets/images/secondOnBoardingScreen.jpg")),
+            Text(
+              "The Best Doctors",
+              style: AppStyles.homeTitleStyle
+                  .copyWith(fontSize: 32 * SizeConfig.textRatio),
+            ),
           ],
         ),
       ),

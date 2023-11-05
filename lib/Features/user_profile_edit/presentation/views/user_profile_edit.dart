@@ -1,12 +1,12 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:untitled/Features/home/presentation/manager/cubits/cubit/home_cubit.dart';
 import 'package:untitled/Features/user_profile_edit/presentation/manager/cubits/update_user_cubit.dart';
 import 'package:untitled/Features/user_profile_edit/presentation/manager/cubits/update_user_states.dart';
 import 'package:untitled/core/app_colors.dart';
 import 'package:untitled/core/app_styles.dart';
 import 'package:untitled/core/utils/size_config.dart';
-import 'package:untitled/core/widgets/custom_app_bar.dart';
 import 'package:untitled/core/widgets/custom_text_form_field.dart';
 
 class UserProfileEdit extends StatefulWidget {
@@ -29,35 +29,31 @@ class _UserProfileEditState extends State<UserProfileEdit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
-      drawer: const Drawer(),
+      appBar: AppBar(
+        foregroundColor: AppColors.colorWhite,
+        backgroundColor: AppColors.primaryColor,
+      ),
       body: BlocListener<UpdateUserCubit, UpdateUserStates>(
         listener: (context, state) {
           if (state is UpdateUserSuccessState) {
-            Navigator.pop(context);
             AnimatedSnackBar.material(
               'User updated Successfully',
               type: AnimatedSnackBarType.success,
-              duration: const Duration(seconds: 4),
+              duration: const Duration(seconds: 2),
             ).show(context);
-          } else if (state is UpdateUserErrorState) {
+            BlocProvider.of<HomeCubit>(context).userProfile();
             Navigator.pop(context);
+          } else if (state is UpdateUserErrorState) {
             AnimatedSnackBar.material(
               state.errorMessage,
               type: AnimatedSnackBarType.error,
               duration: const Duration(seconds: 4),
             ).show(context);
-          } else {
-            showDialog(
-                context: context,
-                builder: (_) =>
-                    const Center(child: CircularProgressIndicator.adaptive()));
           }
         },
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: 16 * SizeConfig.horizontalBlock,
-            vertical: 20 * SizeConfig.verticalBlock,
           ),
           child: SingleChildScrollView(
             child: Form(
@@ -65,12 +61,15 @@ class _UserProfileEditState extends State<UserProfileEdit> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: 10 * SizeConfig.verticalBlock,
+                  ),
                   Text(
                     'Update details!',
                     style: AppStyles.textStyle34w400roboto,
                   ),
                   SizedBox(
-                    height: 20 * SizeConfig.verticalBlock,
+                    height: 5 * SizeConfig.verticalBlock,
                   ),
                   Text(
                     'Update your info and become a new you!',
@@ -116,7 +115,6 @@ class _UserProfileEditState extends State<UserProfileEdit> {
                   CustomTextFormField(
                     controller: password,
                     hintText: 'Password',
-                    obscureText: true,
                     validator: (p0) {
                       return null;
                     },
@@ -127,10 +125,12 @@ class _UserProfileEditState extends State<UserProfileEdit> {
                   CustomTextFormField(
                     controller: passwordConfirm,
                     hintText: 'Password Confirm',
-                    obscureText: true,
                     validator: (p0) {
                       return null;
                     },
+                  ),
+                  SizedBox(
+                    height: 10 * SizeConfig.verticalBlock,
                   ),
                   Row(
                     children: [
@@ -187,7 +187,7 @@ class _UserProfileEditState extends State<UserProfileEdit> {
                               phone: phone.text,
                               password: password.text,
                               passwordConfirm: passwordConfirm.text,
-                              gender: isMale ? "0" : "1");
+                              gender: isMale ? '0' : '1');
                         }
                       },
                       child: Text(
@@ -196,7 +196,10 @@ class _UserProfileEditState extends State<UserProfileEdit> {
                         style: AppStyles.buttonTextStyle,
                       ),
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: 20 * SizeConfig.verticalBlock,
+                  ),
                 ],
               ),
             ),

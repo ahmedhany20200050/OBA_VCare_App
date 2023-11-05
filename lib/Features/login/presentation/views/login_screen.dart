@@ -22,7 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> formkey = GlobalKey();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  bool keepMeLoggedIn = true;
 
   String errors(state, String error) {
     if (state is LoginCubitFailure) {
@@ -39,12 +38,11 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocConsumer<LoginCubit, LoginCubitState>(
       listener: (context, state) {
         if (state is LoginCubitSuccess) {
-          //todo: navigate
           Navigator.of(context).pushReplacementNamed(HomeScreen.id);
           AnimatedSnackBar.material(
             'Login Success',
             type: AnimatedSnackBarType.success,
-            duration: const Duration(seconds: 4),
+            duration: const Duration(seconds: 2),
           ).show(context);
         }
         if (state is LoginCubitFailure) {
@@ -66,27 +64,30 @@ class _LoginScreenState extends State<LoginScreen> {
             physics: const ClampingScrollPhysics(),
             child: Container(
               padding: EdgeInsets.symmetric(
-                  horizontal: 24 * SizeConfig.horizontalBlock,
-                  vertical: 55 * SizeConfig.verticalBlock),
+                  horizontal: 25 * SizeConfig.horizontalBlock,
+                  vertical: 20 * SizeConfig.verticalBlock),
               child: Form(
                 key: formkey,
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        "Welcome Back!",
-                        textAlign: TextAlign.center,
-                        style: AppStyles.titleStyle,
-                      ),
-                      const SizedBox(
-                        height: 20,
+                      Container(
+                        height: 150,
+                        width: 150,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/gif.gif'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                       Row(
                         children: [
                           Expanded(
                             child: Text(
-                              "Login to an account and start booking now.",
+                              "Login to an account and start booking doctors now",
                               style: AppStyles.descriptionStyle,
                               textAlign: TextAlign.center,
                             ),
@@ -94,11 +95,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       const SizedBox(
-                        height: 24,
+                        height: 40,
                       ),
                       TextFormField(
+                        keyboardType: TextInputType.emailAddress,
                         controller: email,
                         decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.email,
+                              color: AppColors.primaryColor),
                           contentPadding:
                               const EdgeInsets.symmetric(horizontal: 16),
                           hintText: "Email",
@@ -125,7 +129,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextFormField(
                         controller: password,
+                        obscureText: loginCubit.obscure,
                         decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.lock,
+                              color: AppColors.primaryColor),
+                          suffixIcon: IconButton(
+                              onPressed: () => loginCubit.changeVisability(),
+                              icon: loginCubit.visabl),
                           contentPadding:
                               const EdgeInsets.symmetric(horizontal: 16),
                           hintText: "Password",
@@ -148,23 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             )
                           : Container(),
                       SizedBox(
-                        height: 10 * SizeConfig.verticalBlock,
-                      ),
-                      Row(
-                        children: [
-                          Checkbox(
-                              activeColor: AppColors.primaryColor,
-                              value: keepMeLoggedIn,
-                              onChanged: (value) {
-                                setState(() {
-                                  keepMeLoggedIn = !keepMeLoggedIn;
-                                });
-                              }),
-                          const Text("Keep Me Logged In"),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10 * SizeConfig.verticalBlock,
+                        height: 20 * SizeConfig.verticalBlock,
                       ),
                       Row(
                         children: [
@@ -184,42 +178,41 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       SizedBox(
-                        height: 20 * SizeConfig.verticalBlock,
+                        height: 15 * SizeConfig.verticalBlock,
                       ),
-                      state is LoginCubitLoading
-                          ? const Center(
-                              child: SizedBox(
-                                  height: 20,
-                                  width: 20,
-                                  child: CircularProgressIndicator(
-                                    color: AppColors.primaryColor,
-                                  )),
-                            )
-                          : SizedBox(
-                              height: 48 * SizeConfig.verticalBlock,
-                              child: TextButton(
-                                style: TextButton.styleFrom(
-                                    backgroundColor: AppColors.primaryColor,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4),
-                                    )),
-                                onPressed: () async {
-                                  if (formkey.currentState!.validate()) {
-                                    await loginCubit.login(
-                                      email: email.text,
-                                      password: password.text,
-                                      keepMeLoggedIn: keepMeLoggedIn,
-                                    );
-                                  }
-                                },
-                                child: Text(
+                      SizedBox(
+                        height: 48 * SizeConfig.verticalBlock,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                              backgroundColor: AppColors.primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              )),
+                          onPressed: () async {
+                            if (formkey.currentState!.validate()) {
+                              await loginCubit.login(
+                                email: email.text,
+                                password: password.text,
+                              );
+                            }
+                          },
+                          child: state is LoginCubitLoading
+                              ? const Center(
+                                  child: SizedBox(
+                                      height: 20,
+                                      width: 20,
+                                      child: CircularProgressIndicator(
+                                        color: AppColors.colorWhite,
+                                      )),
+                                )
+                              : Text(
                                   "Login",
                                   textAlign: TextAlign.center,
                                   style: AppStyles.buttonTextStyle
                                       .copyWith(fontWeight: FontWeight.bold),
                                 ),
-                              ),
-                            )
+                        ),
+                      )
                     ],
                   ),
                 ),

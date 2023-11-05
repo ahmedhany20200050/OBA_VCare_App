@@ -43,9 +43,11 @@ class HomeCubit extends Cubit<HomeStates> {
         .then((value) {
       userModel = UserModel.fromJson(value['data'][0]);
     });
+    emit(HomeProfile());
   }
 
   getHistory() async {
+    historyList.clear();
     var storage = const FlutterSecureStorage();
     token = await storage.read(key: 'token');
     await Api()
@@ -58,5 +60,6 @@ class HomeCubit extends Cubit<HomeStates> {
         historyList.add(HistoryModel.fromJson(element));
       }
     });
+    emit(HomeHistory());
   }
 }

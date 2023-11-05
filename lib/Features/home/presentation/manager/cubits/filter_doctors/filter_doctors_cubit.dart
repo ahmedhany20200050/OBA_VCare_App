@@ -7,16 +7,16 @@ class FilterDoctorCubit extends Cubit<FilterDoctorStates> {
 
   static FilterDoctorCubit get(context) => BlocProvider.of(context);
 
-  void filterDoctor(
-      {required int cityId,
-      required int specializationId,
-      required int governmentId}) async {
+  void filterDoctor({
+    int? cityId,
+    int? specializationId,
+  }) async {
     try {
       emit(FilterDoctorLoadingState());
       final doctors = await FilterDoctorsRepo.filterDoctors(
-          cityId: cityId,
-          specalizationId: specializationId,
-          governorateId: governmentId);
+        cityId: cityId,
+        specalizationId: specializationId,
+      );
       emit(FilterDoctorSuccessState(doctors: doctors));
     } on Exception catch (e) {
       emit(FilterDoctorErrorState(errorMessage: e.toString()));

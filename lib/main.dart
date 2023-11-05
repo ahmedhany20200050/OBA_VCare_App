@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/Features/search/presentation/manger/cubit/search_cubit.dart';
 import 'package:untitled/Features/user_profile_edit/presentation/manager/cubits/update_user_cubit.dart';
@@ -29,34 +30,36 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: AppColors.primaryColor,
+      statusBarIconBrightness: Brightness.light,
+    ));
     SizeConfig.init(context);
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => HomeCubit()
-            ..allMajors()
-            ..userProfile()
-            ..getHistory(),
-        ),
+        BlocProvider(create: (context) => HomeCubit()),
         BlocProvider(create: (context) => RegisterCubit()),
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => DoctorDetailsCubit()),
-        BlocProvider(
-          create: (context) => HistoryDetailsCubit(),
-        ),
+        BlocProvider(create: (context) => HistoryDetailsCubit()),
         BlocProvider(create: (context) => GetDoctorsCubit()),
         BlocProvider(create: (context) => LogoutCubit()),
         BlocProvider(create: (context) => CitiesOfGovernmentCubit()),
         BlocProvider(create: (context) => GetAllGovernmentsCubit()),
         BlocProvider(create: (context) => GetAllSpecializationCubit()),
         BlocProvider(create: (context) => FilterDoctorCubit()),
-        BlocProvider<BottomNavigationBarCubit>(
-            create: (context) => BottomNavigationBarCubit()),
-        BlocProvider<UpdateUserCubit>(create: (context) => UpdateUserCubit())
+        BlocProvider(create: (context) => BottomNavigationBarCubit()),
+        BlocProvider(create: (context) => UpdateUserCubit())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          datePickerTheme: const DatePickerThemeData(
+            headerForegroundColor: AppColors.primaryColor,
+            todayBackgroundColor: MaterialStatePropertyAll(
+              AppColors.primaryColor,
+            ),
+          ),
           primaryColor: AppColors.primaryColor,
           useMaterial3: true,
         ),
