@@ -20,4 +20,4 @@ A Clinic app that is responsible for making appointments with doctors
 - flutter_svg: ^2.0.7 (For displaying the icons that must be in the application)
 
 ## App Demo Video
-https://www.linkedin.com/posts/omar-abdelrazek-62a29a246_i-am-glad-to-share-with-you-vcare-app-using-activity-7126963206652067840-X9T6?utm_source=share&utm_medium=member_desktop
+https://www.youtube.com/watch?v=9Q1fzDsdulk
